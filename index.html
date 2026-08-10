@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Libro de Cuentas — Vista</title>
+<title>Impuestos Familiares — Vista</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -160,8 +160,8 @@ function App() {
         <div className="brand">
           <span className="brand-mark">$</span>
           <div>
-            <h1>Libro de Cuentas</h1>
-            <p className="brand-sub">Luz, agua, gas y demás — por casa</p>
+            <h1>Impuestos Familiares</h1>
+            <p className="brand-sub">Sistema web de impuestos by Djpipa</p>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
@@ -197,7 +197,7 @@ function App() {
       )}
 
       {updatedAt && (
-        <p className="footer-note">Última actualización: {new Date(updatedAt).toLocaleDateString("es-AR", { year: "numeric", month: "long", day: "numeric" })}</p>
+        <p className="footer-note">Actualizado al {new Date(updatedAt).toLocaleDateString("es-AR", { year: "numeric", month: "long", day: "numeric" })}</p>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 {
   "houses": [
     {
-      "id": "1g9vhd91",
+      "id": "huakyuqd",
       "name": "Pedernera",
       "categories": [
         {
@@ -629,7 +629,7 @@
       ]
     },
     {
-      "id": "c8wmd1r0",
+      "id": "drfxdcir",
       "name": "Condarco",
       "categories": [
         {
@@ -649,12 +649,504 @@
           "name": "Gas",
           "color": "#B54A2E",
           "icon": "🔥"
+        },
+        {
+          "id": "cat-directv",
+          "name": "DirecTV",
+          "color": "#7A5C8E",
+          "icon": "📺"
+        },
+        {
+          "id": "cat-telefonica",
+          "name": "Telefonica",
+          "color": "#2F8B7D",
+          "icon": "📞"
+        },
+        {
+          "id": "cat-movistarmama",
+          "name": "Movistar Mama",
+          "color": "#8A6E4B",
+          "icon": "📱"
+        },
+        {
+          "id": "cat-movistarpapa",
+          "name": "Movistar Papa",
+          "color": "#4B6E8A",
+          "icon": "📱"
+        },
+        {
+          "id": "cat-municipalidad",
+          "name": "Municipalidad",
+          "color": "#8E5C6E",
+          "icon": "🏛️"
+        },
+        {
+          "id": "cat-arba",
+          "name": "Arba",
+          "color": "#6E8A4B",
+          "icon": "📋"
         }
       ],
-      "entries": []
+      "entries": [
+        {
+          "id": "con001",
+          "categoryId": "luz",
+          "month": 0,
+          "year": 2026,
+          "amount": 44062.4
+        },
+        {
+          "id": "con002",
+          "categoryId": "luz",
+          "month": 1,
+          "year": 2026,
+          "amount": 70257.53
+        },
+        {
+          "id": "con003",
+          "categoryId": "luz",
+          "month": 2,
+          "year": 2026,
+          "amount": 93872.33
+        },
+        {
+          "id": "con004",
+          "categoryId": "luz",
+          "month": 3,
+          "year": 2026,
+          "amount": 47310.59
+        },
+        {
+          "id": "con005",
+          "categoryId": "luz",
+          "month": 4,
+          "year": 2026,
+          "amount": 64634.79
+        },
+        {
+          "id": "con006",
+          "categoryId": "luz",
+          "month": 5,
+          "year": 2026,
+          "amount": 67886.2
+        },
+        {
+          "id": "con007",
+          "categoryId": "luz",
+          "month": 6,
+          "year": 2026,
+          "amount": 71679.89
+        },
+        {
+          "id": "con008",
+          "categoryId": "luz",
+          "month": 7,
+          "year": 2026,
+          "amount": 86841.79
+        },
+        {
+          "id": "con009",
+          "categoryId": "agua",
+          "month": 0,
+          "year": 2026,
+          "amount": 42074.51
+        },
+        {
+          "id": "con010",
+          "categoryId": "agua",
+          "month": 1,
+          "year": 2026,
+          "amount": 46935.08
+        },
+        {
+          "id": "con011",
+          "categoryId": "agua",
+          "month": 2,
+          "year": 2026,
+          "amount": 46454.64
+        },
+        {
+          "id": "con012",
+          "categoryId": "agua",
+          "month": 3,
+          "year": 2026,
+          "amount": 49880.03
+        },
+        {
+          "id": "con013",
+          "categoryId": "agua",
+          "month": 4,
+          "year": 2026,
+          "amount": 49880.03
+        },
+        {
+          "id": "con014",
+          "categoryId": "agua",
+          "month": 5,
+          "year": 2026,
+          "amount": 51649.18
+        },
+        {
+          "id": "con015",
+          "categoryId": "agua",
+          "month": 6,
+          "year": 2026,
+          "amount": 51649.18
+        },
+        {
+          "id": "con016",
+          "categoryId": "agua",
+          "month": 7,
+          "year": 2026,
+          "amount": 56449.33
+        },
+        {
+          "id": "con017",
+          "categoryId": "gas",
+          "month": 0,
+          "year": 2026,
+          "amount": 13664.58
+        },
+        {
+          "id": "con018",
+          "categoryId": "gas",
+          "month": 1,
+          "year": 2026,
+          "amount": 13124.83
+        },
+        {
+          "id": "con019",
+          "categoryId": "gas",
+          "month": 2,
+          "year": 2026,
+          "amount": 11285.17
+        },
+        {
+          "id": "con020",
+          "categoryId": "gas",
+          "month": 3,
+          "year": 2026,
+          "amount": 11336.42
+        },
+        {
+          "id": "con021",
+          "categoryId": "gas",
+          "month": 4,
+          "year": 2026,
+          "amount": 5849.64
+        },
+        {
+          "id": "con022",
+          "categoryId": "gas",
+          "month": 5,
+          "year": 2026,
+          "amount": 14813.42
+        },
+        {
+          "id": "con023",
+          "categoryId": "gas",
+          "month": 6,
+          "year": 2026,
+          "amount": 25557.61
+        },
+        {
+          "id": "con024",
+          "categoryId": "gas",
+          "month": 7,
+          "year": 2026,
+          "amount": 25063.63
+        },
+        {
+          "id": "con025",
+          "categoryId": "cat-directv",
+          "month": 0,
+          "year": 2026,
+          "amount": 139950.0
+        },
+        {
+          "id": "con026",
+          "categoryId": "cat-directv",
+          "month": 1,
+          "year": 2026,
+          "amount": 108950.0
+        },
+        {
+          "id": "con027",
+          "categoryId": "cat-directv",
+          "month": 2,
+          "year": 2026,
+          "amount": 108950.0
+        },
+        {
+          "id": "con028",
+          "categoryId": "cat-directv",
+          "month": 3,
+          "year": 2026,
+          "amount": 108950.0
+        },
+        {
+          "id": "con029",
+          "categoryId": "cat-directv",
+          "month": 4,
+          "year": 2026,
+          "amount": 149940.0
+        },
+        {
+          "id": "con030",
+          "categoryId": "cat-directv",
+          "month": 5,
+          "year": 2026,
+          "amount": 149940.0
+        },
+        {
+          "id": "con031",
+          "categoryId": "cat-directv",
+          "month": 6,
+          "year": 2026,
+          "amount": 161420.0
+        },
+        {
+          "id": "con032",
+          "categoryId": "cat-directv",
+          "month": 7,
+          "year": 2026,
+          "amount": 161420.0
+        },
+        {
+          "id": "con033",
+          "categoryId": "cat-telefonica",
+          "month": 0,
+          "year": 2026,
+          "amount": 29919.97
+        },
+        {
+          "id": "con034",
+          "categoryId": "cat-telefonica",
+          "month": 1,
+          "year": 2026,
+          "amount": 30269.97
+        },
+        {
+          "id": "con035",
+          "categoryId": "cat-telefonica",
+          "month": 2,
+          "year": 2026,
+          "amount": 31519.97
+        },
+        {
+          "id": "con036",
+          "categoryId": "cat-telefonica",
+          "month": 3,
+          "year": 2026,
+          "amount": 32619.97
+        },
+        {
+          "id": "con037",
+          "categoryId": "cat-telefonica",
+          "month": 4,
+          "year": 2026,
+          "amount": 33666.97
+        },
+        {
+          "id": "con038",
+          "categoryId": "cat-telefonica",
+          "month": 5,
+          "year": 2026,
+          "amount": 13279.34
+        },
+        {
+          "id": "con039",
+          "categoryId": "cat-telefonica",
+          "month": 6,
+          "year": 2026,
+          "amount": 45571.1
+        },
+        {
+          "id": "con040",
+          "categoryId": "cat-telefonica",
+          "month": 7,
+          "year": 2026,
+          "amount": 46920.92
+        },
+        {
+          "id": "con041",
+          "categoryId": "cat-movistarmama",
+          "month": 0,
+          "year": 2026,
+          "amount": 30200.01
+        },
+        {
+          "id": "con042",
+          "categoryId": "cat-movistarmama",
+          "month": 1,
+          "year": 2026,
+          "amount": 31100.0
+        },
+        {
+          "id": "con043",
+          "categoryId": "cat-movistarmama",
+          "month": 2,
+          "year": 2026,
+          "amount": 32049.99
+        },
+        {
+          "id": "con044",
+          "categoryId": "cat-movistarmama",
+          "month": 3,
+          "year": 2026,
+          "amount": 32619.97
+        },
+        {
+          "id": "con045",
+          "categoryId": "cat-movistarmama",
+          "month": 4,
+          "year": 2026,
+          "amount": 37192.99
+        },
+        {
+          "id": "con046",
+          "categoryId": "cat-movistarmama",
+          "month": 5,
+          "year": 2026,
+          "amount": 38453.99
+        },
+        {
+          "id": "con047",
+          "categoryId": "cat-movistarmama",
+          "month": 6,
+          "year": 2026,
+          "amount": 39260.0
+        },
+        {
+          "id": "con048",
+          "categoryId": "cat-movistarmama",
+          "month": 7,
+          "year": 2026,
+          "amount": 40000.99
+        },
+        {
+          "id": "con049",
+          "categoryId": "cat-movistarpapa",
+          "month": 0,
+          "year": 2026,
+          "amount": 30200.01
+        },
+        {
+          "id": "con050",
+          "categoryId": "cat-movistarpapa",
+          "month": 1,
+          "year": 2026,
+          "amount": 31100.0
+        },
+        {
+          "id": "con051",
+          "categoryId": "cat-movistarpapa",
+          "month": 2,
+          "year": 2026,
+          "amount": 32049.99
+        },
+        {
+          "id": "con052",
+          "categoryId": "cat-movistarpapa",
+          "month": 3,
+          "year": 2026,
+          "amount": 32619.97
+        },
+        {
+          "id": "con053",
+          "categoryId": "cat-movistarpapa",
+          "month": 4,
+          "year": 2026,
+          "amount": 37192.99
+        },
+        {
+          "id": "con054",
+          "categoryId": "cat-movistarpapa",
+          "month": 5,
+          "year": 2026,
+          "amount": 38453.99
+        },
+        {
+          "id": "con055",
+          "categoryId": "cat-movistarpapa",
+          "month": 6,
+          "year": 2026,
+          "amount": 39260.0
+        },
+        {
+          "id": "con056",
+          "categoryId": "cat-municipalidad",
+          "month": 0,
+          "year": 2026,
+          "amount": 4880.0
+        },
+        {
+          "id": "con057",
+          "categoryId": "cat-municipalidad",
+          "month": 1,
+          "year": 2026,
+          "amount": 4880.0
+        },
+        {
+          "id": "con058",
+          "categoryId": "cat-municipalidad",
+          "month": 2,
+          "year": 2026,
+          "amount": 4880.0
+        },
+        {
+          "id": "con059",
+          "categoryId": "cat-municipalidad",
+          "month": 3,
+          "year": 2026,
+          "amount": 4880.0
+        },
+        {
+          "id": "con060",
+          "categoryId": "cat-municipalidad",
+          "month": 4,
+          "year": 2026,
+          "amount": 5290.0
+        },
+        {
+          "id": "con061",
+          "categoryId": "cat-municipalidad",
+          "month": 5,
+          "year": 2026,
+          "amount": 5290.0
+        },
+        {
+          "id": "con062",
+          "categoryId": "cat-municipalidad",
+          "month": 6,
+          "year": 2026,
+          "amount": 5632.0
+        },
+        {
+          "id": "con063",
+          "categoryId": "cat-municipalidad",
+          "month": 7,
+          "year": 2026,
+          "amount": 5632.0
+        },
+        {
+          "id": "con064",
+          "categoryId": "cat-arba",
+          "month": 5,
+          "year": 2026,
+          "amount": 4637.0
+        },
+        {
+          "id": "con065",
+          "categoryId": "cat-arba",
+          "month": 7,
+          "year": 2026,
+          "amount": 4841.8
+        }
+      ]
     },
     {
-      "id": "c90r8lf3",
+      "id": "juhqio68",
       "name": "Abuela Seve",
       "categories": [
         {
@@ -664,23 +1156,693 @@
           "icon": "⚡"
         },
         {
-          "id": "agua",
-          "name": "Agua",
-          "color": "#3E7CA6",
-          "icon": "💧"
-        },
-        {
           "id": "gas",
           "name": "Gas",
           "color": "#B54A2E",
           "icon": "🔥"
+        },
+        {
+          "id": "cat-local",
+          "name": "Local",
+          "color": "#7A5C8E",
+          "icon": "🏬"
         }
       ],
-      "entries": []
+      "entries": [
+        {
+          "id": "sev001",
+          "categoryId": "luz",
+          "month": 0,
+          "year": 2025,
+          "amount": 17863.49
+        },
+        {
+          "id": "sev002",
+          "categoryId": "luz",
+          "month": 1,
+          "year": 2025,
+          "amount": 21255.14
+        },
+        {
+          "id": "sev003",
+          "categoryId": "luz",
+          "month": 2,
+          "year": 2025,
+          "amount": 23930.96
+        },
+        {
+          "id": "sev004",
+          "categoryId": "luz",
+          "month": 3,
+          "year": 2025,
+          "amount": 24006.17
+        },
+        {
+          "id": "sev005",
+          "categoryId": "luz",
+          "month": 4,
+          "year": 2025,
+          "amount": 24754.94
+        },
+        {
+          "id": "sev006",
+          "categoryId": "luz",
+          "month": 5,
+          "year": 2025,
+          "amount": 16748.16
+        },
+        {
+          "id": "sev007",
+          "categoryId": "luz",
+          "month": 6,
+          "year": 2025,
+          "amount": 18889.96
+        },
+        {
+          "id": "sev008",
+          "categoryId": "luz",
+          "month": 7,
+          "year": 2025,
+          "amount": 23315.17
+        },
+        {
+          "id": "sev009",
+          "categoryId": "luz",
+          "month": 8,
+          "year": 2025,
+          "amount": 20067.9
+        },
+        {
+          "id": "sev010",
+          "categoryId": "luz",
+          "month": 9,
+          "year": 2025,
+          "amount": 22128.44
+        },
+        {
+          "id": "sev011",
+          "categoryId": "luz",
+          "month": 10,
+          "year": 2025,
+          "amount": 23192.82
+        },
+        {
+          "id": "sev012",
+          "categoryId": "luz",
+          "month": 11,
+          "year": 2025,
+          "amount": 19250.3
+        },
+        {
+          "id": "sev013",
+          "categoryId": "luz",
+          "month": 0,
+          "year": 2026,
+          "amount": 40110.08
+        },
+        {
+          "id": "sev014",
+          "categoryId": "luz",
+          "month": 1,
+          "year": 2026,
+          "amount": 60661.3
+        },
+        {
+          "id": "sev015",
+          "categoryId": "luz",
+          "month": 2,
+          "year": 2026,
+          "amount": 49274.05
+        },
+        {
+          "id": "sev016",
+          "categoryId": "luz",
+          "month": 3,
+          "year": 2026,
+          "amount": 33209.75
+        },
+        {
+          "id": "sev017",
+          "categoryId": "luz",
+          "month": 4,
+          "year": 2026,
+          "amount": 27088.52
+        },
+        {
+          "id": "sev018",
+          "categoryId": "luz",
+          "month": 5,
+          "year": 2026,
+          "amount": 39993.05
+        },
+        {
+          "id": "sev019",
+          "categoryId": "luz",
+          "month": 6,
+          "year": 2026,
+          "amount": 54264.3
+        },
+        {
+          "id": "sev020",
+          "categoryId": "luz",
+          "month": 7,
+          "year": 2026,
+          "amount": 62375.97
+        },
+        {
+          "id": "sev021",
+          "categoryId": "gas",
+          "month": 0,
+          "year": 2025,
+          "amount": 8664.0
+        },
+        {
+          "id": "sev022",
+          "categoryId": "gas",
+          "month": 1,
+          "year": 2025,
+          "amount": 8507.81
+        },
+        {
+          "id": "sev023",
+          "categoryId": "gas",
+          "month": 2,
+          "year": 2025,
+          "amount": 8357.16
+        },
+        {
+          "id": "sev024",
+          "categoryId": "gas",
+          "month": 3,
+          "year": 2025,
+          "amount": 8430.83
+        },
+        {
+          "id": "sev025",
+          "categoryId": "gas",
+          "month": 4,
+          "year": 2025,
+          "amount": 10742.08
+        },
+        {
+          "id": "sev026",
+          "categoryId": "gas",
+          "month": 5,
+          "year": 2025,
+          "amount": 10496.61
+        },
+        {
+          "id": "sev027",
+          "categoryId": "gas",
+          "month": 6,
+          "year": 2025,
+          "amount": 23643.76
+        },
+        {
+          "id": "sev028",
+          "categoryId": "gas",
+          "month": 7,
+          "year": 2025,
+          "amount": 23257.0
+        },
+        {
+          "id": "sev029",
+          "categoryId": "gas",
+          "month": 8,
+          "year": 2025,
+          "amount": 27932.57
+        },
+        {
+          "id": "sev030",
+          "categoryId": "gas",
+          "month": 9,
+          "year": 2025,
+          "amount": 27521.56
+        },
+        {
+          "id": "sev031",
+          "categoryId": "gas",
+          "month": 10,
+          "year": 2025,
+          "amount": 19390.62
+        },
+        {
+          "id": "sev032",
+          "categoryId": "gas",
+          "month": 11,
+          "year": 2025,
+          "amount": 19267.75
+        },
+        {
+          "id": "sev033",
+          "categoryId": "gas",
+          "month": 0,
+          "year": 2026,
+          "amount": 13300.86
+        },
+        {
+          "id": "sev034",
+          "categoryId": "gas",
+          "month": 1,
+          "year": 2026,
+          "amount": 12719.44
+        },
+        {
+          "id": "sev035",
+          "categoryId": "gas",
+          "month": 2,
+          "year": 2026,
+          "amount": 11677.07
+        },
+        {
+          "id": "sev036",
+          "categoryId": "gas",
+          "month": 3,
+          "year": 2026,
+          "amount": 11726.82
+        },
+        {
+          "id": "sev037",
+          "categoryId": "gas",
+          "month": 5,
+          "year": 2026,
+          "amount": 14818.23
+        },
+        {
+          "id": "sev038",
+          "categoryId": "gas",
+          "month": 6,
+          "year": 2026,
+          "amount": 54386.72
+        },
+        {
+          "id": "sev039",
+          "categoryId": "gas",
+          "month": 7,
+          "year": 2026,
+          "amount": 54339.17
+        },
+        {
+          "id": "sev040",
+          "categoryId": "cat-local",
+          "month": 0,
+          "year": 2025,
+          "amount": 32343.0
+        },
+        {
+          "id": "sev041",
+          "categoryId": "cat-local",
+          "month": 1,
+          "year": 2025,
+          "amount": 32343.0
+        },
+        {
+          "id": "sev042",
+          "categoryId": "cat-local",
+          "month": 2,
+          "year": 2025,
+          "amount": 32343.0
+        },
+        {
+          "id": "sev043",
+          "categoryId": "cat-local",
+          "month": 3,
+          "year": 2025,
+          "amount": 34833.0
+        },
+        {
+          "id": "sev044",
+          "categoryId": "cat-local",
+          "month": 4,
+          "year": 2025,
+          "amount": 34833.0
+        },
+        {
+          "id": "sev045",
+          "categoryId": "cat-local",
+          "month": 5,
+          "year": 2025,
+          "amount": 34833.0
+        },
+        {
+          "id": "sev046",
+          "categoryId": "cat-local",
+          "month": 6,
+          "year": 2025,
+          "amount": 38023.0
+        },
+        {
+          "id": "sev047",
+          "categoryId": "cat-local",
+          "month": 7,
+          "year": 2025,
+          "amount": 38023.0
+        },
+        {
+          "id": "sev048",
+          "categoryId": "cat-local",
+          "month": 8,
+          "year": 2025,
+          "amount": 38023.0
+        },
+        {
+          "id": "sev049",
+          "categoryId": "cat-local",
+          "month": 9,
+          "year": 2025,
+          "amount": 40304.0
+        },
+        {
+          "id": "sev050",
+          "categoryId": "cat-local",
+          "month": 10,
+          "year": 2025,
+          "amount": 40304.0
+        },
+        {
+          "id": "sev051",
+          "categoryId": "cat-local",
+          "month": 11,
+          "year": 2025,
+          "amount": 40304.0
+        },
+        {
+          "id": "sev052",
+          "categoryId": "cat-local",
+          "month": 0,
+          "year": 2026,
+          "amount": 45780.0
+        },
+        {
+          "id": "sev053",
+          "categoryId": "cat-local",
+          "month": 1,
+          "year": 2026,
+          "amount": 45780.0
+        },
+        {
+          "id": "sev054",
+          "categoryId": "cat-local",
+          "month": 2,
+          "year": 2026,
+          "amount": 45780.0
+        },
+        {
+          "id": "sev055",
+          "categoryId": "cat-local",
+          "month": 3,
+          "year": 2026,
+          "amount": 45780.0
+        },
+        {
+          "id": "sev056",
+          "categoryId": "cat-local",
+          "month": 4,
+          "year": 2026,
+          "amount": 49586.0
+        },
+        {
+          "id": "sev057",
+          "categoryId": "cat-local",
+          "month": 5,
+          "year": 2026,
+          "amount": 49586.0
+        },
+        {
+          "id": "sev058",
+          "categoryId": "cat-local",
+          "month": 6,
+          "year": 2026,
+          "amount": 52405.0
+        },
+        {
+          "id": "sev059",
+          "categoryId": "cat-local",
+          "month": 7,
+          "year": 2026,
+          "amount": 52405.0
+        }
+      ]
     },
     {
-      "id": "8zjuvksm",
+      "id": "rvz050ei",
       "name": "Quinta",
+      "categories": [
+        {
+          "id": "luz",
+          "name": "Luz",
+          "color": "#E3A73A",
+          "icon": "⚡"
+        },
+        {
+          "id": "cat-municipalidad",
+          "name": "Municipalidad",
+          "color": "#7A5C8E",
+          "icon": "🏛️"
+        },
+        {
+          "id": "cat-arba",
+          "name": "Arba",
+          "color": "#2F8B7D",
+          "icon": "📋"
+        },
+        {
+          "id": "cat-luz2",
+          "name": "Luz 2",
+          "color": "#8A6E4B",
+          "icon": "🔌"
+        }
+      ],
+      "entries": [
+        {
+          "id": "qui001",
+          "categoryId": "luz",
+          "month": 0,
+          "year": 2025,
+          "amount": 18639.1
+        },
+        {
+          "id": "qui002",
+          "categoryId": "luz",
+          "month": 1,
+          "year": 2025,
+          "amount": 140382.76
+        },
+        {
+          "id": "qui003",
+          "categoryId": "luz",
+          "month": 2,
+          "year": 2025,
+          "amount": 154373.62
+        },
+        {
+          "id": "qui004",
+          "categoryId": "luz",
+          "month": 3,
+          "year": 2025,
+          "amount": 150634.2
+        },
+        {
+          "id": "qui005",
+          "categoryId": "luz",
+          "month": 4,
+          "year": 2025,
+          "amount": 156180.54
+        },
+        {
+          "id": "qui006",
+          "categoryId": "luz",
+          "month": 5,
+          "year": 2025,
+          "amount": 40289.01
+        },
+        {
+          "id": "qui007",
+          "categoryId": "luz",
+          "month": 6,
+          "year": 2025,
+          "amount": 44258.04
+        },
+        {
+          "id": "qui008",
+          "categoryId": "luz",
+          "month": 7,
+          "year": 2025,
+          "amount": 151000.0
+        },
+        {
+          "id": "qui009",
+          "categoryId": "luz",
+          "month": 8,
+          "year": 2025,
+          "amount": 152771.5
+        },
+        {
+          "id": "qui010",
+          "categoryId": "luz",
+          "month": 9,
+          "year": 2025,
+          "amount": 165842.26
+        },
+        {
+          "id": "qui011",
+          "categoryId": "luz",
+          "month": 10,
+          "year": 2025,
+          "amount": 170246.34
+        },
+        {
+          "id": "qui012",
+          "categoryId": "luz",
+          "month": 0,
+          "year": 2026,
+          "amount": 70928.67
+        },
+        {
+          "id": "qui013",
+          "categoryId": "luz",
+          "month": 1,
+          "year": 2026,
+          "amount": 107676.84
+        },
+        {
+          "id": "qui014",
+          "categoryId": "luz",
+          "month": 2,
+          "year": 2026,
+          "amount": 73850.31
+        },
+        {
+          "id": "qui015",
+          "categoryId": "luz",
+          "month": 3,
+          "year": 2026,
+          "amount": 26689.13
+        },
+        {
+          "id": "qui016",
+          "categoryId": "luz",
+          "month": 4,
+          "year": 2026,
+          "amount": 32115.06
+        },
+        {
+          "id": "qui017",
+          "categoryId": "luz",
+          "month": 5,
+          "year": 2026,
+          "amount": 28989.1
+        },
+        {
+          "id": "qui018",
+          "categoryId": "luz",
+          "month": 6,
+          "year": 2026,
+          "amount": 52161.13
+        },
+        {
+          "id": "qui019",
+          "categoryId": "luz",
+          "month": 7,
+          "year": 2026,
+          "amount": 21024.82
+        },
+        {
+          "id": "qui020",
+          "categoryId": "cat-municipalidad",
+          "month": 9,
+          "year": 2025,
+          "amount": 4404.0
+        },
+        {
+          "id": "qui021",
+          "categoryId": "cat-municipalidad",
+          "month": 10,
+          "year": 2025,
+          "amount": 4404.0
+        },
+        {
+          "id": "qui022",
+          "categoryId": "cat-municipalidad",
+          "month": 11,
+          "year": 2025,
+          "amount": 4404.0
+        },
+        {
+          "id": "qui023",
+          "categoryId": "cat-arba",
+          "month": 2,
+          "year": 2025,
+          "amount": 7073.1
+        },
+        {
+          "id": "qui024",
+          "categoryId": "cat-arba",
+          "month": 3,
+          "year": 2025,
+          "amount": 3806.0
+        },
+        {
+          "id": "qui025",
+          "categoryId": "cat-luz2",
+          "month": 0,
+          "year": 2026,
+          "amount": 120029.86
+        },
+        {
+          "id": "qui026",
+          "categoryId": "cat-luz2",
+          "month": 1,
+          "year": 2026,
+          "amount": 231988.81
+        },
+        {
+          "id": "qui027",
+          "categoryId": "cat-luz2",
+          "month": 2,
+          "year": 2026,
+          "amount": 256973.77
+        },
+        {
+          "id": "qui028",
+          "categoryId": "cat-luz2",
+          "month": 3,
+          "year": 2026,
+          "amount": 161107.79
+        },
+        {
+          "id": "qui029",
+          "categoryId": "cat-luz2",
+          "month": 4,
+          "year": 2026,
+          "amount": 165271.79
+        },
+        {
+          "id": "qui030",
+          "categoryId": "cat-luz2",
+          "month": 5,
+          "year": 2026,
+          "amount": 119036.74
+        },
+        {
+          "id": "qui031",
+          "categoryId": "cat-luz2",
+          "month": 6,
+          "year": 2026,
+          "amount": 184855.03
+        },
+        {
+          "id": "qui032",
+          "categoryId": "cat-luz2",
+          "month": 7,
+          "year": 2026,
+          "amount": 177311.7
+        }
+      ]
+    },
+    {
+      "id": "tfu5xa1m",
+      "name": "Casacuberta",
       "categories": [
         {
           "id": "luz",
@@ -699,11 +1861,374 @@
           "name": "Gas",
           "color": "#B54A2E",
           "icon": "🔥"
+        },
+        {
+          "id": "cat-municipalidad",
+          "name": "Municipalidad",
+          "color": "#7A5C8E",
+          "icon": "🏛️"
+        },
+        {
+          "id": "cat-arba",
+          "name": "Arba",
+          "color": "#2F8B7D",
+          "icon": "📋"
         }
       ],
-      "entries": []
+      "entries": [
+        {
+          "id": "cas001",
+          "categoryId": "agua",
+          "month": 0,
+          "year": 2025,
+          "amount": 13435.03
+        },
+        {
+          "id": "cas002",
+          "categoryId": "agua",
+          "month": 1,
+          "year": 2025,
+          "amount": 13598.6
+        },
+        {
+          "id": "cas003",
+          "categoryId": "agua",
+          "month": 2,
+          "year": 2025,
+          "amount": 13710.42
+        },
+        {
+          "id": "cas004",
+          "categoryId": "agua",
+          "month": 3,
+          "year": 2025,
+          "amount": 13740.68
+        },
+        {
+          "id": "cas005",
+          "categoryId": "agua",
+          "month": 4,
+          "year": 2025,
+          "amount": 13873.52
+        },
+        {
+          "id": "cas006",
+          "categoryId": "agua",
+          "month": 5,
+          "year": 2025,
+          "amount": 14012.23
+        },
+        {
+          "id": "cas007",
+          "categoryId": "agua",
+          "month": 6,
+          "year": 2025,
+          "amount": 14147.68
+        },
+        {
+          "id": "cas008",
+          "categoryId": "agua",
+          "month": 7,
+          "year": 2025,
+          "amount": 14284.4
+        },
+        {
+          "id": "cas009",
+          "categoryId": "agua",
+          "month": 8,
+          "year": 2025,
+          "amount": 14427.25
+        },
+        {
+          "id": "cas010",
+          "categoryId": "agua",
+          "month": 9,
+          "year": 2025,
+          "amount": 14566.71
+        },
+        {
+          "id": "cas011",
+          "categoryId": "agua",
+          "month": 10,
+          "year": 2025,
+          "amount": 14712.38
+        },
+        {
+          "id": "cas012",
+          "categoryId": "agua",
+          "month": 11,
+          "year": 2025,
+          "amount": 14854.58
+        },
+        {
+          "id": "cas013",
+          "categoryId": "gas",
+          "month": 0,
+          "year": 2025,
+          "amount": 3613.97
+        },
+        {
+          "id": "cas014",
+          "categoryId": "gas",
+          "month": 1,
+          "year": 2025,
+          "amount": 3832.49
+        },
+        {
+          "id": "cas015",
+          "categoryId": "gas",
+          "month": 2,
+          "year": 2025,
+          "amount": 3880.38
+        },
+        {
+          "id": "cas016",
+          "categoryId": "gas",
+          "month": 3,
+          "year": 2025,
+          "amount": 3946.5
+        },
+        {
+          "id": "cas017",
+          "categoryId": "gas",
+          "month": 4,
+          "year": 2025,
+          "amount": 3979.34
+        },
+        {
+          "id": "cas018",
+          "categoryId": "gas",
+          "month": 5,
+          "year": 2025,
+          "amount": 4170.23
+        },
+        {
+          "id": "cas019",
+          "categoryId": "gas",
+          "month": 6,
+          "year": 2025,
+          "amount": 4261.11
+        },
+        {
+          "id": "cas020",
+          "categoryId": "gas",
+          "month": 7,
+          "year": 2025,
+          "amount": 4632.42
+        },
+        {
+          "id": "cas021",
+          "categoryId": "gas",
+          "month": 8,
+          "year": 2025,
+          "amount": 4605.62
+        },
+        {
+          "id": "cas022",
+          "categoryId": "gas",
+          "month": 9,
+          "year": 2025,
+          "amount": 4981.94
+        },
+        {
+          "id": "cas023",
+          "categoryId": "gas",
+          "month": 10,
+          "year": 2025,
+          "amount": 5015.75
+        },
+        {
+          "id": "cas024",
+          "categoryId": "gas",
+          "month": 11,
+          "year": 2025,
+          "amount": 5362.13
+        },
+        {
+          "id": "cas025",
+          "categoryId": "luz",
+          "month": 0,
+          "year": 2025,
+          "amount": 9683.84
+        },
+        {
+          "id": "cas026",
+          "categoryId": "luz",
+          "month": 1,
+          "year": 2025,
+          "amount": 8730.51
+        },
+        {
+          "id": "cas027",
+          "categoryId": "luz",
+          "month": 2,
+          "year": 2025,
+          "amount": 9788.8
+        },
+        {
+          "id": "cas028",
+          "categoryId": "luz",
+          "month": 3,
+          "year": 2025,
+          "amount": 9842.35
+        },
+        {
+          "id": "cas029",
+          "categoryId": "luz",
+          "month": 4,
+          "year": 2025,
+          "amount": 10217.31
+        },
+        {
+          "id": "cas030",
+          "categoryId": "luz",
+          "month": 5,
+          "year": 2025,
+          "amount": 9178.75
+        },
+        {
+          "id": "cas031",
+          "categoryId": "luz",
+          "month": 6,
+          "year": 2025,
+          "amount": 10835.69
+        },
+        {
+          "id": "cas032",
+          "categoryId": "luz",
+          "month": 7,
+          "year": 2025,
+          "amount": 10834.12
+        },
+        {
+          "id": "cas033",
+          "categoryId": "luz",
+          "month": 8,
+          "year": 2025,
+          "amount": 6750.06
+        },
+        {
+          "id": "cas034",
+          "categoryId": "luz",
+          "month": 9,
+          "year": 2025,
+          "amount": 10911.7
+        },
+        {
+          "id": "cas035",
+          "categoryId": "luz",
+          "month": 10,
+          "year": 2025,
+          "amount": 11488.01
+        },
+        {
+          "id": "cas036",
+          "categoryId": "luz",
+          "month": 11,
+          "year": 2025,
+          "amount": 11818.99
+        },
+        {
+          "id": "cas037",
+          "categoryId": "cat-municipalidad",
+          "month": 0,
+          "year": 2025,
+          "amount": 21283.0
+        },
+        {
+          "id": "cas038",
+          "categoryId": "cat-municipalidad",
+          "month": 1,
+          "year": 2025,
+          "amount": 21859.0
+        },
+        {
+          "id": "cas039",
+          "categoryId": "cat-municipalidad",
+          "month": 2,
+          "year": 2025,
+          "amount": 22339.0
+        },
+        {
+          "id": "cas040",
+          "categoryId": "cat-municipalidad",
+          "month": 3,
+          "year": 2025,
+          "amount": 22875.0
+        },
+        {
+          "id": "cas041",
+          "categoryId": "cat-municipalidad",
+          "month": 4,
+          "year": 2025,
+          "amount": 23722.0
+        },
+        {
+          "id": "cas042",
+          "categoryId": "cat-municipalidad",
+          "month": 5,
+          "year": 2025,
+          "amount": 24385.0
+        },
+        {
+          "id": "cas043",
+          "categoryId": "cat-municipalidad",
+          "month": 6,
+          "year": 2025,
+          "amount": 24752.0
+        },
+        {
+          "id": "cas044",
+          "categoryId": "cat-municipalidad",
+          "month": 7,
+          "year": 2025,
+          "amount": 25148.0
+        },
+        {
+          "id": "cas045",
+          "categoryId": "cat-municipalidad",
+          "month": 8,
+          "year": 2025,
+          "amount": 25626.0
+        },
+        {
+          "id": "cas046",
+          "categoryId": "cat-municipalidad",
+          "month": 9,
+          "year": 2025,
+          "amount": 26113.0
+        },
+        {
+          "id": "cas047",
+          "categoryId": "cat-municipalidad",
+          "month": 10,
+          "year": 2025,
+          "amount": 26661.0
+        },
+        {
+          "id": "cas048",
+          "categoryId": "cat-municipalidad",
+          "month": 11,
+          "year": 2025,
+          "amount": 27274.0
+        },
+        {
+          "id": "cas049",
+          "categoryId": "cat-arba",
+          "month": 2,
+          "year": 2025,
+          "amount": 2258.1
+        },
+        {
+          "id": "cas050",
+          "categoryId": "cat-arba",
+          "month": 10,
+          "year": 2025,
+          "amount": 2665.9
+        }
+      ]
     }
   ],
-  "activeHouseId": "1g9vhd91",
-  "exportedAt": "2026-08-09T00:00:00.000Z"
+  "activeHouseId": "huakyuqd",
+  "exportedAt": "2026-08-10T02:15:20.396259Z"
 }
