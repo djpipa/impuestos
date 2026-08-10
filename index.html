@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Impuestos Familiares — Vista</title>
+<title>Impuestos Familiares</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -26,14 +26,24 @@
   }
   * { box-sizing: border-box; }
   body { margin: 0; font-family: 'Inter', sans-serif; color: var(--ink); background: var(--paper); }
-  .app { min-height: 100vh; padding: 24px; max-width: 1100px; margin: 0 auto; }
+  .app { min-height: 100vh; padding: 24px; max-width: 1100px; margin: 0 auto; display:flex; flex-direction:column; }
 
-  .header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom: 20px; }
+  .header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom: 8px; }
   .brand { display:flex; align-items:center; gap:12px; }
   .brand-mark { font-family:'Fraunces', serif; font-size:28px; font-weight:600; width:44px; height:44px; display:flex; align-items:center; justify-content:center; background: var(--ink); color: var(--paper); border-radius: 10px; }
   .brand h1 { font-family:'Fraunces', serif; font-size:24px; font-weight:600; margin:0; letter-spacing:-0.01em; }
   .brand-sub { margin:2px 0 0; font-size:13px; color: var(--ink-soft); }
-  .badge { font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); border:1px solid var(--paper-line); background: var(--card-bg); padding:4px 10px; border-radius:999px; }
+
+  .header-actions { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .toolbar { display:flex; gap:8px; }
+  .toolbar-btn { display:flex; align-items:center; gap:6px; border:1px solid var(--paper-line); background: var(--card-bg); color: var(--ink-soft); font-family:'Inter'; font-size:13px; font-weight:500; padding:8px 12px; border-radius:9px; cursor:pointer; }
+  .toolbar-btn:hover { color: var(--ink); border-color: var(--ink-soft); }
+  .toolbar-btn:disabled { opacity:0.45; cursor:not-allowed; }
+  .toolbar-btn:disabled:hover { color: var(--ink-soft); border-color: var(--paper-line); }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 10px 18px; border-radius: 8px; font-size: 13px; font-family: 'Inter'; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 100; }
+
+  .updated-note { font-size:12px; color: var(--ink-soft); text-align:right; margin: 0 0 18px; }
+  .updated-note strong { font-family:'Space Mono', monospace; font-weight:700; color: var(--ink); background: var(--card-bg); border:1px solid var(--paper-line); padding: 2px 8px; border-radius: 6px; }
 
   .tabs { display:flex; background: var(--card-bg); border:1px solid var(--paper-line); border-radius: 10px; padding:4px; }
   .tab { border:none; background:transparent; padding:8px 18px; font-family:'Inter'; font-size:14px; font-weight:500; color: var(--ink-soft); border-radius:7px; cursor:pointer; }
@@ -42,33 +52,68 @@
   .house-bar { margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px dashed var(--paper-line); }
   .house-bar-label { font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color: var(--ink-soft); margin: 0 0 8px 2px; }
   .house-tabs { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-  .house-tab { font-family:'Fraunces', serif; font-size:14px; font-weight:600; padding:8px 16px; border-radius:9px; border:1px solid var(--paper-line); background: var(--card-bg); color: var(--ink-soft); cursor:pointer; }
+  .house-tab { font-family:'Fraunces', serif; font-size:14px; font-weight:600; padding:8px 16px; border-radius:9px; border:1px solid var(--paper-line); background: var(--card-bg); color: var(--ink-soft); cursor:grab; }
+  .house-tab:active { cursor:grabbing; }
   .house-tab.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .house-tab.drag-over { outline: 2px dashed var(--ink-soft); outline-offset: 2px; }
+  .house-tab-input { font-family:'Fraunces', serif; font-size:14px; font-weight:600; padding:7px 14px; border-radius:9px; border:1.5px solid var(--ink); background: var(--card-bg); color: var(--ink); }
+  .house-tab.add { font-family:'Inter'; font-weight:500; border-style:dashed; color: var(--ink-soft); background: transparent; cursor:pointer; }
+  .house-tab.add:hover { color: var(--ink); border-color: var(--ink-soft); }
+  .house-tab-add-form input { font-family:'Inter'; font-size:13px; padding:7px 12px; border-radius:9px; border:1.5px solid var(--ink); background: var(--card-bg); }
   .house-heading { font-family:'Fraunces', serif; font-size:19px; font-weight:600; margin: 0 0 16px 2px; }
 
   .cards-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:20px; }
 
-  .card { position:relative; background: var(--card-bg); border:1px solid var(--paper-line); border-radius: 14px; padding: 22px 18px 16px; overflow:hidden; }
+  .card { position:relative; background: var(--card-bg); border:1px solid var(--paper-line); border-radius: 14px; padding: 22px 18px 16px; overflow:hidden; transition: outline 0.1s ease; }
+  .card.drag-over { outline: 2px dashed var(--ink-soft); outline-offset: 3px; }
   .card-scallop { position:absolute; top:-8px; left:0; right:0; height:16px; background-image: radial-gradient(circle at 8px 8px, transparent 7px, var(--paper) 7.5px); background-size: 16px 16px; background-repeat: repeat-x; }
-  .card-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
-  .card-title { display:flex; align-items:center; gap:8px; }
+  .card-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:8px; }
+  .card-title { display:flex; align-items:center; gap:8px; min-width:0; }
   .card-title .cat-icon { font-size:16px; }
-  .card-title h2 { font-family:'Fraunces', serif; font-size:17px; font-weight:600; margin:0; color: var(--ink); }
+  .card-title h2 { font-family:'Fraunces', serif; font-size:17px; font-weight:600; margin:0; color: var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .card-head-actions { display:flex; align-items:center; gap:2px; flex-shrink:0; }
+  .drag-handle { cursor:grab; color: var(--ink-soft); font-size:15px; padding:2px 5px; user-select:none; line-height:1; border-radius:5px; }
+  .drag-handle:hover { background: var(--paper); color: var(--ink); }
+  .drag-handle:active { cursor:grabbing; }
 
-  .ledger { display:flex; flex-direction:column; gap:8px; }
+  .ledger { display:flex; flex-direction:column; gap:8px; margin-bottom: 14px; min-height: 20px; }
   .empty-row { font-size:13px; color: var(--ink-soft); font-style:italic; margin:6px 0; }
   .ledger-row { display:flex; align-items:center; gap:8px; font-family:'Space Mono', monospace; font-size:13px; }
+  .ledger-row.placeholder { opacity: 0.75; }
   .ledger-date { color: var(--ink-soft); white-space:nowrap; }
   .ledger-dots { flex:1; border-bottom: 1px dotted var(--paper-line); margin-bottom:4px; }
   .ledger-amount { font-weight:700; white-space:nowrap; }
+  .ledger-amount-empty { font-style:italic; font-weight:400; color: var(--ink-soft); white-space:nowrap; }
   .delta { display:flex; align-items:center; gap:2px; font-size:11px; font-family:'Inter'; padding:2px 6px; border-radius:6px; white-space:nowrap; }
   .delta.up { color: var(--up); background: rgba(178,58,58,0.1); }
   .delta.down { color: var(--down); background: rgba(63,143,95,0.1); }
 
+  .icon-btn { border:none; background:transparent; color: var(--ink-soft); cursor:pointer; padding:3px 5px; display:flex; border-radius:5px; font-size:12px; line-height:1; }
+  .icon-btn:hover { background: var(--paper); color: var(--ink); }
+
+  .edit-input { width:80px; font-family:'Space Mono', monospace; font-size:13px; padding:2px 6px; border:1px solid var(--cat-color, var(--ink-soft)); border-radius:5px; }
+
+  .add-row { display:flex; gap:6px; padding-top:12px; border-top:1px solid var(--paper-line); }
+  .add-row select, .year-input, .amount-input { font-family:'Inter'; font-size:12px; border:1px solid var(--paper-line); border-radius:6px; padding:6px; background: var(--paper); color: var(--ink); }
+  .year-input { width:74px; padding-right:4px; }
+  .amount-input { flex:1; min-width:0; }
+  .add-btn { border:none; color:#fff; border-radius:6px; padding:0 10px; display:flex; align-items:center; cursor:pointer; font-size:16px; }
+
+  .add-category-card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:1.5px dashed var(--paper-line); border-radius:14px; background:transparent; color: var(--ink-soft); min-height:140px; cursor:pointer; font-family:'Inter'; font-size:14px; }
+  .add-category-card:hover { border-color: var(--ink-soft); color: var(--ink); }
+  .add-category-card.form { align-items:stretch; padding:18px; cursor:default; }
+  .add-category-card.form input { font-family:'Inter'; font-size:14px; padding:8px 10px; border:1px solid var(--paper-line); border-radius:7px; margin-bottom:10px; width:100%; }
+  .swatches { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  .swatch { width:22px; height:22px; border-radius:50%; border:2px solid transparent; cursor:pointer; }
+  .swatch.selected { border-color: var(--ink); }
+  .form-actions { display:flex; gap:8px; }
+  .save-btn { flex:1; background: var(--ink); color: var(--paper); border:none; border-radius:7px; padding:8px; font-weight:600; cursor:pointer; }
+  .cancel-btn { background:transparent; border:1px solid var(--paper-line); border-radius:7px; padding:8px 12px; cursor:pointer; color: var(--ink-soft); }
+
   .dashboard { display:flex; flex-direction:column; gap:20px; }
-  .dashboard.empty-state, .load-state { align-items:center; justify-content:center; text-align:center; padding:80px 20px; color: var(--ink-soft); gap:10px; display:flex; flex-direction:column; }
-  .dashboard.empty-state h2, .load-state h2 { font-family:'Fraunces', serif; color:var(--ink); margin:8px 0 0; }
-  .big-icon { font-size:40px; }
+  .dashboard.empty-state { align-items:center; justify-content:center; text-align:center; padding:80px 20px; color: var(--ink-soft); gap:10px; }
+  .dashboard.empty-state h2 { font-family:'Fraunces', serif; color:var(--ink); margin:8px 0 0; }
+  .dashboard.empty-state .big-icon { font-size:40px; }
 
   .summary-row { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap:14px; }
   .summary-card { background: var(--card-bg); border:1px solid var(--paper-line); border-left: 4px solid var(--cat-color); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:4px; }
@@ -78,10 +123,22 @@
   .chart-panel { background: var(--card-bg); border:1px solid var(--paper-line); border-radius:14px; padding:18px 12px; }
   .chart-panel h3 { font-family:'Fraunces', serif; font-size:16px; font-weight:600; margin:0 0 12px 12px; }
 
-  .footer-note { text-align:center; font-size:12px; color: var(--ink-soft); margin-top: 28px; }
+  .app-footer { margin-top: 40px; padding-top: 18px; border-top: 1px dashed var(--paper-line); text-align:center; font-size:12px; color: var(--ink-soft); line-height:1.6; }
+
+  .modal-overlay { position:fixed; inset:0; background: rgba(35,43,36,0.55); display:flex; align-items:center; justify-content:center; z-index: 200; padding:20px; }
+  .modal-box { background: var(--card-bg); border-radius:14px; padding:24px; max-width:380px; width:100%; box-shadow: 0 12px 40px rgba(0,0,0,0.28); }
+  .modal-box h3 { font-family:'Fraunces', serif; font-size:18px; margin:0 0 6px; }
+  .modal-desc { font-size:13px; color: var(--ink-soft); margin: 0 0 12px; }
+  .modal-row { font-family:'Space Mono', monospace; font-size:13px; margin:6px 0; padding:8px 10px; border-radius:7px; background: var(--paper); word-break: break-word; }
+  .modal-row.old { color: var(--up); }
+  .modal-row.new { color: var(--down); }
+  .modal-actions { display:flex; gap:10px; margin-top:18px; }
+  .pin-input { width:100%; font-family:'Space Mono', monospace; font-size:22px; letter-spacing:8px; text-align:center; padding:10px; border:1px solid var(--paper-line); border-radius:8px; margin: 10px 0 4px; background: var(--paper); color: var(--ink); }
+  .pin-error { color: var(--up); font-size:12px; margin: 2px 0 8px; }
 
   @media (max-width: 520px) {
     .header { flex-direction:column; align-items:flex-start; }
+    .updated-note { text-align:left; }
   }
 </style>
 </head>
@@ -89,70 +146,307 @@
 <div id="root"></div>
 
 <script type="text/babel">
-const { useState, useEffect, useMemo } = React;
+const { useState, useEffect, useMemo, useRef } = React;
 const {
   LineChart, Line, BarChart, Bar, XAxis, YAxis,
   CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } = Recharts;
 
 const MONTHS = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+const MONTHS_FULL = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const DEFAULT_HOUSE_NAMES = ["Pedernera", "Condarco", "Abuela Seve", "Quinta", "Casacuberta"];
+const PALETTE = ["#7A5C8E","#2F8B7D","#8A6E4B","#4B6E8A","#8E5C6E","#6E8A4B","#9C6B3E","#5C7A8E"];
+const STORAGE_KEY = "impuestos-familiares-ledger";
+const LEGACY_STORAGE_KEY = "libro-de-cuentas-ledger";
+const SESSION_UNLOCK_KEY = "impuestos-unlocked";
+
+// El código de edición nunca aparece en texto plano: se valida contra este hash SHA-256.
+const PIN_HASH = "ef1956ff4324600bc95aebe5d2b159dd0a621cac165b46016c6f71ec7811b312";
+// Respaldo ofuscado (se usa solo si el navegador no soporta Web Crypto, p. ej. abriendo el archivo local sin https).
+const PIN_OBFUSCATED = [54, 52, 56, 54];
+function obfuscatedPin() {
+  return PIN_OBFUSCATED.map((c) => String.fromCharCode(c - 1)).join("");
+}
+async function checkPin(value) {
+  const v = (value || "").trim();
+  if (!v) return false;
+  if (window.crypto && window.crypto.subtle) {
+    try {
+      const enc = new TextEncoder().encode(v);
+      const buf = await window.crypto.subtle.digest("SHA-256", enc);
+      const hex = Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+      return hex === PIN_HASH;
+    } catch (e) {
+      return v === obfuscatedPin();
+    }
+  }
+  return v === obfuscatedPin();
+}
+
+function defaultCategories() {
+  return [
+    { id: "luz", name: "Luz", color: "#E3A73A", icon: "⚡" },
+    { id: "agua", name: "Agua", color: "#3E7CA6", icon: "💧" },
+    { id: "gas", name: "Gas", color: "#B54A2E", icon: "🔥" },
+  ];
+}
+
+const PEDERNERA_SEED = {"categories":[{"id":"luz","name":"Luz","color":"#E3A73A","icon":"⚡"},{"id":"agua","name":"Agua","color":"#3E7CA6","icon":"💧"},{"id":"gas","name":"Gas","color":"#B54A2E","icon":"🔥"},{"id":"cat-internet","name":"Internet","color":"#7A5C8E","icon":"🌐"},{"id":"cat-celular","name":"Celular","color":"#2F8B7D","icon":"📱"},{"id":"cat-lanus","name":"Lanus","color":"#8A6E4B","icon":"🏛️"},{"id":"cat-seguroauto","name":"Seguro Auto","color":"#4B6E8A","icon":"🚗"},{"id":"cat-arba","name":"Arba","color":"#8E5C6E","icon":"📋"},{"id":"cat-patente","name":"Patente","color":"#6E8A4B","icon":"🚙"},{"id":"cat-directv","name":"DirecTV","color":"#9C6B3E","icon":"📺"}],"entries":[{"id":"ped001","categoryId":"luz","month":10,"year":2025,"amount":14871.1},{"id":"ped002","categoryId":"luz","month":11,"year":2025,"amount":9781.15},{"id":"ped003","categoryId":"luz","month":0,"year":2026,"amount":15510.27},{"id":"ped004","categoryId":"luz","month":1,"year":2026,"amount":20145.66},{"id":"ped005","categoryId":"luz","month":2,"year":2026,"amount":20518.14},{"id":"ped006","categoryId":"luz","month":3,"year":2026,"amount":19125.47},{"id":"ped007","categoryId":"luz","month":4,"year":2026,"amount":22913.7},{"id":"ped008","categoryId":"luz","month":5,"year":2026,"amount":68852.28},{"id":"ped009","categoryId":"luz","month":6,"year":2026,"amount":151064.27},{"id":"ped010","categoryId":"luz","month":7,"year":2026,"amount":115214.56},{"id":"ped011","categoryId":"agua","month":10,"year":2025,"amount":16356.42},{"id":"ped012","categoryId":"agua","month":11,"year":2025,"amount":16514.53},{"id":"ped013","categoryId":"agua","month":0,"year":2026,"amount":16674.13},{"id":"ped014","categoryId":"agua","month":1,"year":2026,"amount":17101.01},{"id":"ped015","categoryId":"agua","month":2,"year":2026,"amount":17785.05},{"id":"ped016","categoryId":"agua","month":3,"year":2026,"amount":20094.72},{"id":"ped017","categoryId":"agua","month":4,"year":2026,"amount":20759.2},{"id":"ped018","categoryId":"agua","month":5,"year":2026,"amount":20873.84},{"id":"ped019","categoryId":"agua","month":6,"year":2026,"amount":21566.55},{"id":"ped020","categoryId":"agua","month":7,"year":2026,"amount":21152.22},{"id":"ped021","categoryId":"gas","month":10,"year":2025,"amount":4896.59},{"id":"ped022","categoryId":"gas","month":11,"year":2025,"amount":4884.07},{"id":"ped023","categoryId":"gas","month":0,"year":2026,"amount":5087.57},{"id":"ped024","categoryId":"gas","month":1,"year":2026,"amount":5453.05},{"id":"ped025","categoryId":"gas","month":2,"year":2026,"amount":5393.09},{"id":"ped026","categoryId":"gas","month":3,"year":2026,"amount":6180.13},{"id":"ped027","categoryId":"gas","month":5,"year":2026,"amount":11998.29},{"id":"ped028","categoryId":"gas","month":6,"year":2026,"amount":12345.82},{"id":"ped029","categoryId":"gas","month":7,"year":2026,"amount":43424.46},{"id":"ped030","categoryId":"cat-internet","month":11,"year":2025,"amount":21967.73},{"id":"ped031","categoryId":"cat-internet","month":0,"year":2026,"amount":22699.99},{"id":"ped032","categoryId":"cat-internet","month":1,"year":2026,"amount":23649.98},{"id":"ped033","categoryId":"cat-internet","month":2,"year":2026,"amount":25399.99},{"id":"ped034","categoryId":"cat-internet","month":3,"year":2026,"amount":27149.99},{"id":"ped035","categoryId":"cat-internet","month":4,"year":2026,"amount":31877.99},{"id":"ped036","categoryId":"cat-internet","month":5,"year":2026,"amount":33100.0},{"id":"ped037","categoryId":"cat-internet","month":6,"year":2026,"amount":34246.99},{"id":"ped038","categoryId":"cat-internet","month":7,"year":2026,"amount":34210.49},{"id":"ped039","categoryId":"cat-celular","month":10,"year":2025,"amount":30899.96},{"id":"ped040","categoryId":"cat-celular","month":11,"year":2025,"amount":31649.96},{"id":"ped041","categoryId":"cat-celular","month":0,"year":2026,"amount":32750.01},{"id":"ped042","categoryId":"cat-celular","month":1,"year":2026,"amount":33700.0},{"id":"ped043","categoryId":"cat-celular","month":2,"year":2026,"amount":34750.0},{"id":"ped044","categoryId":"cat-celular","month":3,"year":2026,"amount":38704.77},{"id":"ped045","categoryId":"cat-celular","month":4,"year":2026,"amount":40053.99},{"id":"ped046","categoryId":"cat-celular","month":5,"year":2026,"amount":41412.0},{"id":"ped047","categoryId":"cat-celular","month":6,"year":2026,"amount":42279.99},{"id":"ped048","categoryId":"cat-lanus","month":10,"year":2025,"amount":6436.0},{"id":"ped049","categoryId":"cat-lanus","month":11,"year":2025,"amount":6436.0},{"id":"ped050","categoryId":"cat-lanus","month":0,"year":2026,"amount":6682.5},{"id":"ped051","categoryId":"cat-lanus","month":1,"year":2026,"amount":6682.5},{"id":"ped052","categoryId":"cat-lanus","month":2,"year":2026,"amount":6682.5},{"id":"ped053","categoryId":"cat-lanus","month":3,"year":2026,"amount":6682.5},{"id":"ped054","categoryId":"cat-lanus","month":4,"year":2026,"amount":6682.5},{"id":"ped055","categoryId":"cat-lanus","month":5,"year":2026,"amount":6682.5},{"id":"ped056","categoryId":"cat-lanus","month":6,"year":2026,"amount":6682.5},{"id":"ped057","categoryId":"cat-lanus","month":7,"year":2026,"amount":6682.5},{"id":"ped058","categoryId":"cat-seguroauto","month":10,"year":2025,"amount":155290.45},{"id":"ped059","categoryId":"cat-seguroauto","month":11,"year":2025,"amount":161434.02},{"id":"ped060","categoryId":"cat-seguroauto","month":0,"year":2026,"amount":168205.47},{"id":"ped061","categoryId":"cat-seguroauto","month":1,"year":2026,"amount":157102.16},{"id":"ped062","categoryId":"cat-seguroauto","month":2,"year":2026,"amount":176408.69},{"id":"ped063","categoryId":"cat-seguroauto","month":3,"year":2026,"amount":172577.87},{"id":"ped064","categoryId":"cat-seguroauto","month":4,"year":2026,"amount":173694.85},{"id":"ped065","categoryId":"cat-seguroauto","month":5,"year":2026,"amount":173694.85},{"id":"ped066","categoryId":"cat-seguroauto","month":6,"year":2026,"amount":175123.76},{"id":"ped067","categoryId":"cat-seguroauto","month":7,"year":2026,"amount":184131.0},{"id":"ped068","categoryId":"cat-arba","month":1,"year":2026,"amount":5739.2},{"id":"ped069","categoryId":"cat-arba","month":3,"year":2026,"amount":6050.6},{"id":"ped070","categoryId":"cat-arba","month":5,"year":2026,"amount":6388.3},{"id":"ped071","categoryId":"cat-arba","month":7,"year":2026,"amount":6670.5},{"id":"ped072","categoryId":"cat-patente","month":10,"year":2025,"amount":148444.1},{"id":"ped073","categoryId":"cat-patente","month":2,"year":2026,"amount":43223.3},{"id":"ped074","categoryId":"cat-patente","month":3,"year":2026,"amount":44360.6},{"id":"ped075","categoryId":"cat-patente","month":4,"year":2026,"amount":45436.4},{"id":"ped076","categoryId":"cat-patente","month":5,"year":2026,"amount":45436.4},{"id":"ped077","categoryId":"cat-patente","month":6,"year":2026,"amount":47973.8},{"id":"ped078","categoryId":"cat-patente","month":7,"year":2026,"amount":48905.9},{"id":"ped079","categoryId":"cat-directv","month":5,"year":2026,"amount":28701.68},{"id":"ped080","categoryId":"cat-directv","month":6,"year":2026,"amount":41500.0}]};
+const CONDARCO_SEED = {"categories":[{"id":"luz","name":"Luz","color":"#E3A73A","icon":"⚡"},{"id":"agua","name":"Agua","color":"#3E7CA6","icon":"💧"},{"id":"gas","name":"Gas","color":"#B54A2E","icon":"🔥"},{"id":"cat-directv","name":"DirecTV","color":"#7A5C8E","icon":"📺"},{"id":"cat-telefonica","name":"Telefonica","color":"#2F8B7D","icon":"📞"},{"id":"cat-movistarmama","name":"Movistar Mama","color":"#8A6E4B","icon":"📱"},{"id":"cat-movistarpapa","name":"Movistar Papa","color":"#4B6E8A","icon":"📱"},{"id":"cat-municipalidad","name":"Municipalidad","color":"#8E5C6E","icon":"🏛️"},{"id":"cat-arba","name":"Arba","color":"#6E8A4B","icon":"📋"}],"entries":[{"id":"con001","categoryId":"luz","month":0,"year":2026,"amount":44062.4},{"id":"con002","categoryId":"luz","month":1,"year":2026,"amount":70257.53},{"id":"con003","categoryId":"luz","month":2,"year":2026,"amount":93872.33},{"id":"con004","categoryId":"luz","month":3,"year":2026,"amount":47310.59},{"id":"con005","categoryId":"luz","month":4,"year":2026,"amount":64634.79},{"id":"con006","categoryId":"luz","month":5,"year":2026,"amount":67886.2},{"id":"con007","categoryId":"luz","month":6,"year":2026,"amount":71679.89},{"id":"con008","categoryId":"luz","month":7,"year":2026,"amount":86841.79},{"id":"con009","categoryId":"agua","month":0,"year":2026,"amount":42074.51},{"id":"con010","categoryId":"agua","month":1,"year":2026,"amount":46935.08},{"id":"con011","categoryId":"agua","month":2,"year":2026,"amount":46454.64},{"id":"con012","categoryId":"agua","month":3,"year":2026,"amount":49880.03},{"id":"con013","categoryId":"agua","month":4,"year":2026,"amount":49880.03},{"id":"con014","categoryId":"agua","month":5,"year":2026,"amount":51649.18},{"id":"con015","categoryId":"agua","month":6,"year":2026,"amount":51649.18},{"id":"con016","categoryId":"agua","month":7,"year":2026,"amount":56449.33},{"id":"con017","categoryId":"gas","month":0,"year":2026,"amount":13664.58},{"id":"con018","categoryId":"gas","month":1,"year":2026,"amount":13124.83},{"id":"con019","categoryId":"gas","month":2,"year":2026,"amount":11285.17},{"id":"con020","categoryId":"gas","month":3,"year":2026,"amount":11336.42},{"id":"con021","categoryId":"gas","month":4,"year":2026,"amount":5849.64},{"id":"con022","categoryId":"gas","month":5,"year":2026,"amount":14813.42},{"id":"con023","categoryId":"gas","month":6,"year":2026,"amount":25557.61},{"id":"con024","categoryId":"gas","month":7,"year":2026,"amount":25063.63},{"id":"con025","categoryId":"cat-directv","month":0,"year":2026,"amount":139950.0},{"id":"con026","categoryId":"cat-directv","month":1,"year":2026,"amount":108950.0},{"id":"con027","categoryId":"cat-directv","month":2,"year":2026,"amount":108950.0},{"id":"con028","categoryId":"cat-directv","month":3,"year":2026,"amount":108950.0},{"id":"con029","categoryId":"cat-directv","month":4,"year":2026,"amount":149940.0},{"id":"con030","categoryId":"cat-directv","month":5,"year":2026,"amount":149940.0},{"id":"con031","categoryId":"cat-directv","month":6,"year":2026,"amount":161420.0},{"id":"con032","categoryId":"cat-directv","month":7,"year":2026,"amount":161420.0},{"id":"con033","categoryId":"cat-telefonica","month":0,"year":2026,"amount":29919.97},{"id":"con034","categoryId":"cat-telefonica","month":1,"year":2026,"amount":30269.97},{"id":"con035","categoryId":"cat-telefonica","month":2,"year":2026,"amount":31519.97},{"id":"con036","categoryId":"cat-telefonica","month":3,"year":2026,"amount":32619.97},{"id":"con037","categoryId":"cat-telefonica","month":4,"year":2026,"amount":33666.97},{"id":"con038","categoryId":"cat-telefonica","month":5,"year":2026,"amount":13279.34},{"id":"con039","categoryId":"cat-telefonica","month":6,"year":2026,"amount":45571.1},{"id":"con040","categoryId":"cat-telefonica","month":7,"year":2026,"amount":46920.92},{"id":"con041","categoryId":"cat-movistarmama","month":0,"year":2026,"amount":30200.01},{"id":"con042","categoryId":"cat-movistarmama","month":1,"year":2026,"amount":31100.0},{"id":"con043","categoryId":"cat-movistarmama","month":2,"year":2026,"amount":32049.99},{"id":"con044","categoryId":"cat-movistarmama","month":3,"year":2026,"amount":32619.97},{"id":"con045","categoryId":"cat-movistarmama","month":4,"year":2026,"amount":37192.99},{"id":"con046","categoryId":"cat-movistarmama","month":5,"year":2026,"amount":38453.99},{"id":"con047","categoryId":"cat-movistarmama","month":6,"year":2026,"amount":39260.0},{"id":"con048","categoryId":"cat-movistarmama","month":7,"year":2026,"amount":40000.99},{"id":"con049","categoryId":"cat-movistarpapa","month":0,"year":2026,"amount":30200.01},{"id":"con050","categoryId":"cat-movistarpapa","month":1,"year":2026,"amount":31100.0},{"id":"con051","categoryId":"cat-movistarpapa","month":2,"year":2026,"amount":32049.99},{"id":"con052","categoryId":"cat-movistarpapa","month":3,"year":2026,"amount":32619.97},{"id":"con053","categoryId":"cat-movistarpapa","month":4,"year":2026,"amount":37192.99},{"id":"con054","categoryId":"cat-movistarpapa","month":5,"year":2026,"amount":38453.99},{"id":"con055","categoryId":"cat-movistarpapa","month":6,"year":2026,"amount":39260.0},{"id":"con056","categoryId":"cat-municipalidad","month":0,"year":2026,"amount":4880.0},{"id":"con057","categoryId":"cat-municipalidad","month":1,"year":2026,"amount":4880.0},{"id":"con058","categoryId":"cat-municipalidad","month":2,"year":2026,"amount":4880.0},{"id":"con059","categoryId":"cat-municipalidad","month":3,"year":2026,"amount":4880.0},{"id":"con060","categoryId":"cat-municipalidad","month":4,"year":2026,"amount":5290.0},{"id":"con061","categoryId":"cat-municipalidad","month":5,"year":2026,"amount":5290.0},{"id":"con062","categoryId":"cat-municipalidad","month":6,"year":2026,"amount":5632.0},{"id":"con063","categoryId":"cat-municipalidad","month":7,"year":2026,"amount":5632.0},{"id":"con064","categoryId":"cat-arba","month":5,"year":2026,"amount":4637.0},{"id":"con065","categoryId":"cat-arba","month":7,"year":2026,"amount":4841.8}]};
+const QUINTA_SEED = {"categories":[{"id":"luz","name":"Luz","color":"#E3A73A","icon":"⚡"},{"id":"cat-municipalidad","name":"Municipalidad","color":"#7A5C8E","icon":"🏛️"},{"id":"cat-arba","name":"Arba","color":"#2F8B7D","icon":"📋"},{"id":"cat-luz2","name":"Luz 2","color":"#8A6E4B","icon":"🔌"}],"entries":[{"id":"qui001","categoryId":"luz","month":0,"year":2025,"amount":18639.1},{"id":"qui002","categoryId":"luz","month":1,"year":2025,"amount":140382.76},{"id":"qui003","categoryId":"luz","month":2,"year":2025,"amount":154373.62},{"id":"qui004","categoryId":"luz","month":3,"year":2025,"amount":150634.2},{"id":"qui005","categoryId":"luz","month":4,"year":2025,"amount":156180.54},{"id":"qui006","categoryId":"luz","month":5,"year":2025,"amount":40289.01},{"id":"qui007","categoryId":"luz","month":6,"year":2025,"amount":44258.04},{"id":"qui008","categoryId":"luz","month":7,"year":2025,"amount":151000.0},{"id":"qui009","categoryId":"luz","month":8,"year":2025,"amount":152771.5},{"id":"qui010","categoryId":"luz","month":9,"year":2025,"amount":165842.26},{"id":"qui011","categoryId":"luz","month":10,"year":2025,"amount":170246.34},{"id":"qui012","categoryId":"luz","month":0,"year":2026,"amount":70928.67},{"id":"qui013","categoryId":"luz","month":1,"year":2026,"amount":107676.84},{"id":"qui014","categoryId":"luz","month":2,"year":2026,"amount":73850.31},{"id":"qui015","categoryId":"luz","month":3,"year":2026,"amount":26689.13},{"id":"qui016","categoryId":"luz","month":4,"year":2026,"amount":32115.06},{"id":"qui017","categoryId":"luz","month":5,"year":2026,"amount":28989.1},{"id":"qui018","categoryId":"luz","month":6,"year":2026,"amount":52161.13},{"id":"qui019","categoryId":"luz","month":7,"year":2026,"amount":21024.82},{"id":"qui020","categoryId":"cat-municipalidad","month":9,"year":2025,"amount":4404.0},{"id":"qui021","categoryId":"cat-municipalidad","month":10,"year":2025,"amount":4404.0},{"id":"qui022","categoryId":"cat-municipalidad","month":11,"year":2025,"amount":4404.0},{"id":"qui023","categoryId":"cat-arba","month":2,"year":2025,"amount":7073.1},{"id":"qui024","categoryId":"cat-arba","month":3,"year":2025,"amount":3806.0},{"id":"qui025","categoryId":"cat-luz2","month":0,"year":2026,"amount":120029.86},{"id":"qui026","categoryId":"cat-luz2","month":1,"year":2026,"amount":231988.81},{"id":"qui027","categoryId":"cat-luz2","month":2,"year":2026,"amount":256973.77},{"id":"qui028","categoryId":"cat-luz2","month":3,"year":2026,"amount":161107.79},{"id":"qui029","categoryId":"cat-luz2","month":4,"year":2026,"amount":165271.79},{"id":"qui030","categoryId":"cat-luz2","month":5,"year":2026,"amount":119036.74},{"id":"qui031","categoryId":"cat-luz2","month":6,"year":2026,"amount":184855.03},{"id":"qui032","categoryId":"cat-luz2","month":7,"year":2026,"amount":177311.7}]};
+const ABUELASEVE_SEED = {"categories":[{"id":"luz","name":"Luz","color":"#E3A73A","icon":"⚡"},{"id":"gas","name":"Gas","color":"#B54A2E","icon":"🔥"},{"id":"cat-local","name":"Local","color":"#7A5C8E","icon":"🏬"}],"entries":[{"id":"sev001","categoryId":"luz","month":0,"year":2025,"amount":17863.49},{"id":"sev002","categoryId":"luz","month":1,"year":2025,"amount":21255.14},{"id":"sev003","categoryId":"luz","month":2,"year":2025,"amount":23930.96},{"id":"sev004","categoryId":"luz","month":3,"year":2025,"amount":24006.17},{"id":"sev005","categoryId":"luz","month":4,"year":2025,"amount":24754.94},{"id":"sev006","categoryId":"luz","month":5,"year":2025,"amount":16748.16},{"id":"sev007","categoryId":"luz","month":6,"year":2025,"amount":18889.96},{"id":"sev008","categoryId":"luz","month":7,"year":2025,"amount":23315.17},{"id":"sev009","categoryId":"luz","month":8,"year":2025,"amount":20067.9},{"id":"sev010","categoryId":"luz","month":9,"year":2025,"amount":22128.44},{"id":"sev011","categoryId":"luz","month":10,"year":2025,"amount":23192.82},{"id":"sev012","categoryId":"luz","month":11,"year":2025,"amount":19250.3},{"id":"sev013","categoryId":"luz","month":0,"year":2026,"amount":40110.08},{"id":"sev014","categoryId":"luz","month":1,"year":2026,"amount":60661.3},{"id":"sev015","categoryId":"luz","month":2,"year":2026,"amount":49274.05},{"id":"sev016","categoryId":"luz","month":3,"year":2026,"amount":33209.75},{"id":"sev017","categoryId":"luz","month":4,"year":2026,"amount":27088.52},{"id":"sev018","categoryId":"luz","month":5,"year":2026,"amount":39993.05},{"id":"sev019","categoryId":"luz","month":6,"year":2026,"amount":54264.3},{"id":"sev020","categoryId":"luz","month":7,"year":2026,"amount":62375.97},{"id":"sev021","categoryId":"gas","month":0,"year":2025,"amount":8664.0},{"id":"sev022","categoryId":"gas","month":1,"year":2025,"amount":8507.81},{"id":"sev023","categoryId":"gas","month":2,"year":2025,"amount":8357.16},{"id":"sev024","categoryId":"gas","month":3,"year":2025,"amount":8430.83},{"id":"sev025","categoryId":"gas","month":4,"year":2025,"amount":10742.08},{"id":"sev026","categoryId":"gas","month":5,"year":2025,"amount":10496.61},{"id":"sev027","categoryId":"gas","month":6,"year":2025,"amount":23643.76},{"id":"sev028","categoryId":"gas","month":7,"year":2025,"amount":23257.0},{"id":"sev029","categoryId":"gas","month":8,"year":2025,"amount":27932.57},{"id":"sev030","categoryId":"gas","month":9,"year":2025,"amount":27521.56},{"id":"sev031","categoryId":"gas","month":10,"year":2025,"amount":19390.62},{"id":"sev032","categoryId":"gas","month":11,"year":2025,"amount":19267.75},{"id":"sev033","categoryId":"gas","month":0,"year":2026,"amount":13300.86},{"id":"sev034","categoryId":"gas","month":1,"year":2026,"amount":12719.44},{"id":"sev035","categoryId":"gas","month":2,"year":2026,"amount":11677.07},{"id":"sev036","categoryId":"gas","month":3,"year":2026,"amount":11726.82},{"id":"sev037","categoryId":"gas","month":5,"year":2026,"amount":14818.23},{"id":"sev038","categoryId":"gas","month":6,"year":2026,"amount":54386.72},{"id":"sev039","categoryId":"gas","month":7,"year":2026,"amount":54339.17},{"id":"sev040","categoryId":"cat-local","month":0,"year":2025,"amount":32343.0},{"id":"sev041","categoryId":"cat-local","month":1,"year":2025,"amount":32343.0},{"id":"sev042","categoryId":"cat-local","month":2,"year":2025,"amount":32343.0},{"id":"sev043","categoryId":"cat-local","month":3,"year":2025,"amount":34833.0},{"id":"sev044","categoryId":"cat-local","month":4,"year":2025,"amount":34833.0},{"id":"sev045","categoryId":"cat-local","month":5,"year":2025,"amount":34833.0},{"id":"sev046","categoryId":"cat-local","month":6,"year":2025,"amount":38023.0},{"id":"sev047","categoryId":"cat-local","month":7,"year":2025,"amount":38023.0},{"id":"sev048","categoryId":"cat-local","month":8,"year":2025,"amount":38023.0},{"id":"sev049","categoryId":"cat-local","month":9,"year":2025,"amount":40304.0},{"id":"sev050","categoryId":"cat-local","month":10,"year":2025,"amount":40304.0},{"id":"sev051","categoryId":"cat-local","month":11,"year":2025,"amount":40304.0},{"id":"sev052","categoryId":"cat-local","month":0,"year":2026,"amount":45780.0},{"id":"sev053","categoryId":"cat-local","month":1,"year":2026,"amount":45780.0},{"id":"sev054","categoryId":"cat-local","month":2,"year":2026,"amount":45780.0},{"id":"sev055","categoryId":"cat-local","month":3,"year":2026,"amount":45780.0},{"id":"sev056","categoryId":"cat-local","month":4,"year":2026,"amount":49586.0},{"id":"sev057","categoryId":"cat-local","month":5,"year":2026,"amount":49586.0},{"id":"sev058","categoryId":"cat-local","month":6,"year":2026,"amount":52405.0},{"id":"sev059","categoryId":"cat-local","month":7,"year":2026,"amount":52405.0}]};
+const CASACUBERTA_SEED = {"categories":[{"id":"luz","name":"Luz","color":"#E3A73A","icon":"⚡"},{"id":"agua","name":"Agua","color":"#3E7CA6","icon":"💧"},{"id":"gas","name":"Gas","color":"#B54A2E","icon":"🔥"},{"id":"cat-municipalidad","name":"Municipalidad","color":"#7A5C8E","icon":"🏛️"},{"id":"cat-arba","name":"Arba","color":"#2F8B7D","icon":"📋"}],"entries":[{"id":"cas001","categoryId":"agua","month":0,"year":2025,"amount":13435.03},{"id":"cas002","categoryId":"agua","month":1,"year":2025,"amount":13598.6},{"id":"cas003","categoryId":"agua","month":2,"year":2025,"amount":13710.42},{"id":"cas004","categoryId":"agua","month":3,"year":2025,"amount":13740.68},{"id":"cas005","categoryId":"agua","month":4,"year":2025,"amount":13873.52},{"id":"cas006","categoryId":"agua","month":5,"year":2025,"amount":14012.23},{"id":"cas007","categoryId":"agua","month":6,"year":2025,"amount":14147.68},{"id":"cas008","categoryId":"agua","month":7,"year":2025,"amount":14284.4},{"id":"cas009","categoryId":"agua","month":8,"year":2025,"amount":14427.25},{"id":"cas010","categoryId":"agua","month":9,"year":2025,"amount":14566.71},{"id":"cas011","categoryId":"agua","month":10,"year":2025,"amount":14712.38},{"id":"cas012","categoryId":"agua","month":11,"year":2025,"amount":14854.58},{"id":"cas013","categoryId":"gas","month":0,"year":2025,"amount":3613.97},{"id":"cas014","categoryId":"gas","month":1,"year":2025,"amount":3832.49},{"id":"cas015","categoryId":"gas","month":2,"year":2025,"amount":3880.38},{"id":"cas016","categoryId":"gas","month":3,"year":2025,"amount":3946.5},{"id":"cas017","categoryId":"gas","month":4,"year":2025,"amount":3979.34},{"id":"cas018","categoryId":"gas","month":5,"year":2025,"amount":4170.23},{"id":"cas019","categoryId":"gas","month":6,"year":2025,"amount":4261.11},{"id":"cas020","categoryId":"gas","month":7,"year":2025,"amount":4632.42},{"id":"cas021","categoryId":"gas","month":8,"year":2025,"amount":4605.62},{"id":"cas022","categoryId":"gas","month":9,"year":2025,"amount":4981.94},{"id":"cas023","categoryId":"gas","month":10,"year":2025,"amount":5015.75},{"id":"cas024","categoryId":"gas","month":11,"year":2025,"amount":5362.13},{"id":"cas025","categoryId":"luz","month":0,"year":2025,"amount":9683.84},{"id":"cas026","categoryId":"luz","month":1,"year":2025,"amount":8730.51},{"id":"cas027","categoryId":"luz","month":2,"year":2025,"amount":9788.8},{"id":"cas028","categoryId":"luz","month":3,"year":2025,"amount":9842.35},{"id":"cas029","categoryId":"luz","month":4,"year":2025,"amount":10217.31},{"id":"cas030","categoryId":"luz","month":5,"year":2025,"amount":9178.75},{"id":"cas031","categoryId":"luz","month":6,"year":2025,"amount":10835.69},{"id":"cas032","categoryId":"luz","month":7,"year":2025,"amount":10834.12},{"id":"cas033","categoryId":"luz","month":8,"year":2025,"amount":6750.06},{"id":"cas034","categoryId":"luz","month":9,"year":2025,"amount":10911.7},{"id":"cas035","categoryId":"luz","month":10,"year":2025,"amount":11488.01},{"id":"cas036","categoryId":"luz","month":11,"year":2025,"amount":11818.99},{"id":"cas037","categoryId":"cat-municipalidad","month":0,"year":2025,"amount":21283.0},{"id":"cas038","categoryId":"cat-municipalidad","month":1,"year":2025,"amount":21859.0},{"id":"cas039","categoryId":"cat-municipalidad","month":2,"year":2025,"amount":22339.0},{"id":"cas040","categoryId":"cat-municipalidad","month":3,"year":2025,"amount":22875.0},{"id":"cas041","categoryId":"cat-municipalidad","month":4,"year":2025,"amount":23722.0},{"id":"cas042","categoryId":"cat-municipalidad","month":5,"year":2025,"amount":24385.0},{"id":"cas043","categoryId":"cat-municipalidad","month":6,"year":2025,"amount":24752.0},{"id":"cas044","categoryId":"cat-municipalidad","month":7,"year":2025,"amount":25148.0},{"id":"cas045","categoryId":"cat-municipalidad","month":8,"year":2025,"amount":25626.0},{"id":"cas046","categoryId":"cat-municipalidad","month":9,"year":2025,"amount":26113.0},{"id":"cas047","categoryId":"cat-municipalidad","month":10,"year":2025,"amount":26661.0},{"id":"cas048","categoryId":"cat-municipalidad","month":11,"year":2025,"amount":27274.0},{"id":"cas049","categoryId":"cat-arba","month":2,"year":2025,"amount":2258.1},{"id":"cas050","categoryId":"cat-arba","month":10,"year":2025,"amount":2665.9}]};
+
+function defaultHouses() {
+  return DEFAULT_HOUSE_NAMES.map((name) => {
+    if (name === "Pedernera") return { id: uid(), name, categories: PEDERNERA_SEED.categories, entries: PEDERNERA_SEED.entries };
+    if (name === "Condarco") return { id: uid(), name, categories: CONDARCO_SEED.categories, entries: CONDARCO_SEED.entries };
+    if (name === "Quinta") return { id: uid(), name, categories: QUINTA_SEED.categories, entries: QUINTA_SEED.entries };
+    if (name === "Abuela Seve") return { id: uid(), name, categories: ABUELASEVE_SEED.categories, entries: ABUELASEVE_SEED.entries };
+    if (name === "Casacuberta") return { id: uid(), name, categories: CASACUBERTA_SEED.categories, entries: CASACUBERTA_SEED.entries };
+    return { id: uid(), name, categories: defaultCategories(), entries: [] };
+  });
+}
 
 function formatARS(n) {
   return new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(n);
 }
+function uid() {
+  return Math.random().toString(36).slice(2, 10);
+}
+function ymKey(y, m) { return y * 12 + m; }
+function monthsBetween(y1, m1, y2, m2) {
+  const start = ymKey(y1, m1), end = ymKey(y2, m2);
+  const out = [];
+  for (let k = start; k <= end; k++) {
+    out.push({ year: Math.floor(k / 12), month: ((k % 12) + 12) % 12 });
+  }
+  return out;
+}
+function buildLedgerRows(entries, categoryId) {
+  const real = [...entries].sort((a, b) => ymKey(a.year, a.month) - ymKey(b.year, b.month));
+  if (real.length < 2) return real.map((e) => ({ ...e, __placeholder: false }));
+  const first = real[0], last = real[real.length - 1];
+  const range = monthsBetween(first.year, first.month, last.year, last.month);
+  const byKey = new Map(real.map((e) => [ymKey(e.year, e.month), e]));
+  return range.map(({ year, month }) => {
+    const found = byKey.get(ymKey(year, month));
+    if (found) return { ...found, __placeholder: false };
+    return { id: `ph-${year}-${month}`, categoryId, month, year, amount: null, __placeholder: true };
+  });
+}
+function formatUpdated(iso) {
+  if (!iso) return null;
+  return new Date(iso).toLocaleString("es-AR", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" });
+}
 
 function App() {
-  const [houses, setHouses] = useState(null);
+  const [houses, setHouses] = useState(defaultHouses());
   const [activeHouseId, setActiveHouseId] = useState(null);
-  const [view, setView] = useState("detalle");
-  const [error, setError] = useState(false);
-  const [updatedAt, setUpdatedAt] = useState(null);
+  const [view, setView] = useState("cargar");
+  const [loaded, setLoaded] = useState(false);
+  const [showAddCategory, setShowAddCategory] = useState(false);
+  const [toast, setToast] = useState(null);
+  const [lastModified, setLastModified] = useState(null);
+  const [unlocked, setUnlocked] = useState(false);
+  const [pinRequest, setPinRequest] = useState(null); // { pending, value, error }
+  const [confirmRequest, setConfirmRequest] = useState(null); // { title, oldLabel, newLabel, onConfirm }
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
-    fetch("data.json", { cache: "no-store" })
-      .then((r) => { if (!r.ok) throw new Error("no data"); return r.json(); })
-      .then((data) => {
-        setHouses(data.houses || []);
-        setActiveHouseId(data.activeHouseId || (data.houses && data.houses[0] && data.houses[0].id));
-        setUpdatedAt(data.exportedAt || null);
-      })
-      .catch(() => setError(true));
+    try {
+      if (sessionStorage.getItem(SESSION_UNLOCK_KEY) === "1") setUnlocked(true);
+    } catch (e) {}
   }, []);
 
-  if (error) {
-    return (
-      <div className="app">
-        <div className="load-state">
-          <span className="big-icon">🧾</span>
-          <h2>No se pudo cargar la información</h2>
-          <p>Revisá que el archivo data.json esté publicado junto a esta página.</p>
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (data.houses && data.houses.length) {
+          setHouses(data.houses);
+          setActiveHouseId(data.activeHouseId && data.houses.some((h) => h.id === data.activeHouseId) ? data.activeHouseId : data.houses[0].id);
+          setLastModified(data.lastModified || null);
+        } else if (data.categories) {
+          const migrated = defaultHouses();
+          migrated[0] = { ...migrated[0], categories: data.categories, entries: data.entries || [] };
+          setHouses(migrated);
+          setActiveHouseId(migrated[0].id);
+        } else {
+          const fresh = defaultHouses();
+          setHouses(fresh);
+          setActiveHouseId(fresh[0].id);
+        }
+      } else {
+        const fresh = defaultHouses();
+        setHouses(fresh);
+        setActiveHouseId(fresh[0].id);
+      }
+    } catch (e) {
+      const fresh = defaultHouses();
+      setHouses(fresh);
+      setActiveHouseId(fresh[0].id);
+    } finally {
+      setLoaded(true);
+    }
+  }, []);
 
-  if (!houses) {
-    return (
-      <div className="app">
-        <div className="load-state">
-          <span className="big-icon">🧾</span>
-          <h2>Cargando…</h2>
-        </div>
-      </div>
-    );
+  useEffect(() => {
+    if (!loaded) return;
+    const now = new Date().toISOString();
+    setLastModified(now);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ houses, activeHouseId, lastModified: now }));
+    } catch (e) {
+      console.error("No se pudo guardar", e);
+    }
+  }, [houses, activeHouseId, loaded]);
+
+  function showToast(msg) {
+    setToast(msg);
+    setTimeout(() => setToast(null), 2600);
   }
 
   const activeHouse = houses.find((h) => h.id === activeHouseId) || houses[0];
-  if (!activeHouse) {
-    return (
-      <div className="app">
-        <div className="load-state">
-          <span className="big-icon">🧾</span>
-          <h2>Todavía no hay casas cargadas</h2>
-        </div>
-      </div>
-    );
+
+  function updateActiveHouse(patchFn) {
+    setHouses((prev) => prev.map((h) => (h.id === activeHouse.id ? patchFn(h) : h)));
   }
+
+  // ---- mutaciones reales (se ejecutan solo tras código + confirmación) ----
+  function addEntry(categoryId, entry) {
+    updateActiveHouse((h) => ({ ...h, entries: [...h.entries, { id: uid(), categoryId, ...entry }] }));
+  }
+  function updateEntry(id, patch) {
+    updateActiveHouse((h) => ({ ...h, entries: h.entries.map((e) => (e.id === id ? { ...e, ...patch } : e)) }));
+  }
+  function deleteEntry(id) {
+    updateActiveHouse((h) => ({ ...h, entries: h.entries.filter((e) => e.id !== id) }));
+  }
+  function addCategory(name, color) {
+    updateActiveHouse((h) => ({ ...h, categories: [...h.categories, { id: uid(), name, color, icon: "🧾" }] }));
+  }
+  function deleteCategory(id) {
+    updateActiveHouse((h) => ({
+      ...h,
+      categories: h.categories.filter((c) => c.id !== id),
+      entries: h.entries.filter((e) => e.categoryId !== id),
+    }));
+  }
+  function renameHouseRaw(id, newName) {
+    setHouses((prev) => prev.map((h) => (h.id === id ? { ...h, name: newName } : h)));
+  }
+  function addHouseRaw(name) {
+    const newHouse = { id: uid(), name, categories: defaultCategories(), entries: [] };
+    setHouses((prev) => [...prev, newHouse]);
+    setActiveHouseId(newHouse.id);
+  }
+  function reorderHouses(fromIndex, toIndex) {
+    setHouses((prev) => {
+      const arr = [...prev];
+      const [moved] = arr.splice(fromIndex, 1);
+      arr.splice(toIndex, 0, moved);
+      return arr;
+    });
+  }
+  function reorderCategories(fromIndex, toIndex) {
+    updateActiveHouse((h) => {
+      const arr = [...h.categories];
+      const [moved] = arr.splice(fromIndex, 1);
+      arr.splice(toIndex, 0, moved);
+      return { ...h, categories: arr };
+    });
+  }
+
+  // ---- código + confirmación ----
+  function requestChange({ title, oldLabel, newLabel, onConfirm }) {
+    const pending = { title, oldLabel, newLabel, onConfirm };
+    if (unlocked) {
+      setConfirmRequest(pending);
+    } else {
+      setPinRequest({ pending, value: "", error: null });
+    }
+  }
+  async function submitPin() {
+    const ok = await checkPin(pinRequest.value);
+    if (ok) {
+      setUnlocked(true);
+      try { sessionStorage.setItem(SESSION_UNLOCK_KEY, "1"); } catch (e) {}
+      const pending = pinRequest.pending;
+      setPinRequest(null);
+      setConfirmRequest(pending);
+    } else {
+      setPinRequest((p) => ({ ...p, error: "Código incorrecto", value: "" }));
+    }
+  }
+  function cancelPin() { setPinRequest(null); }
+  function confirmYes() {
+    if (confirmRequest) confirmRequest.onConfirm();
+    setConfirmRequest(null);
+    showToast("Cambio guardado ✓");
+  }
+  function confirmNo() { setConfirmRequest(null); }
+
+  // ---- versiones "guardadas" que arma cada acción y la manda a requestChange ----
+  function guardedAddEntry(categoryName, categoryId, entry) {
+    requestChange({
+      title: `Agregar registro — ${categoryName}`,
+      oldLabel: null,
+      newLabel: `${MONTHS_FULL[entry.month]} ${entry.year}: ${formatARS(entry.amount)}`,
+      onConfirm: () => addEntry(categoryId, entry),
+    });
+  }
+  function guardedUpdateEntry(categoryName, entry, newAmount) {
+    requestChange({
+      title: `Editar registro — ${categoryName}`,
+      oldLabel: `${MONTHS_FULL[entry.month]} ${entry.year}: ${formatARS(entry.amount)}`,
+      newLabel: `${MONTHS_FULL[entry.month]} ${entry.year}: ${formatARS(newAmount)}`,
+      onConfirm: () => updateEntry(entry.id, { amount: newAmount }),
+    });
+  }
+  function guardedDeleteEntry(categoryName, entry) {
+    requestChange({
+      title: `Eliminar registro — ${categoryName}`,
+      oldLabel: `${MONTHS_FULL[entry.month]} ${entry.year}: ${formatARS(entry.amount)}`,
+      newLabel: "(se va a eliminar)",
+      onConfirm: () => deleteEntry(entry.id),
+    });
+  }
+  function guardedAddCategory(name, color) {
+    requestChange({
+      title: "Agregar ítem",
+      oldLabel: null,
+      newLabel: name,
+      onConfirm: () => addCategory(name, color),
+    });
+  }
+  function guardedDeleteCategory(category, count) {
+    requestChange({
+      title: "Eliminar ítem",
+      oldLabel: `${category.name} (${count} registro${count === 1 ? "" : "s"})`,
+      newLabel: "(se va a eliminar el ítem y todos sus registros)",
+      onConfirm: () => deleteCategory(category.id),
+    });
+  }
+  function guardedRenameHouse(house, newName) {
+    requestChange({
+      title: "Renombrar casa",
+      oldLabel: house.name,
+      newLabel: newName,
+      onConfirm: () => renameHouseRaw(house.id, newName),
+    });
+  }
+  function guardedAddHouse(name) {
+    requestChange({
+      title: "Agregar casa",
+      oldLabel: null,
+      newLabel: name,
+      onConfirm: () => addHouseRaw(name),
+    });
+  }
+
+  if (!activeHouse) return null;
 
   return (
     <div className="app">
@@ -164,88 +458,357 @@ function App() {
             <p className="brand-sub">Sistema web de impuestos by Djpipa</p>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-          <span className="badge">Solo lectura</span>
+        <div className="header-actions">
+          <div className="toolbar">
+            <button className="toolbar-btn" disabled title="Deshabilitado por el momento">⬇ Exportar</button>
+            <button className="toolbar-btn" disabled title="Deshabilitado por el momento">⬆ Importar</button>
+          </div>
           <nav className="tabs">
-            <button className={view === "detalle" ? "tab active" : "tab"} onClick={() => setView("detalle")}>Detalle</button>
+            <button className={view === "cargar" ? "tab active" : "tab"} onClick={() => setView("cargar")}>Cargar</button>
             <button className={view === "dashboard" ? "tab active" : "tab"} onClick={() => setView("dashboard")}>Dashboard</button>
           </nav>
         </div>
       </header>
+      {toast && <div className="toast">{toast}</div>}
+
+      {lastModified && (
+        <p className="updated-note">Actualizado al <strong>{formatUpdated(lastModified)}</strong></p>
+      )}
 
       <div className="house-bar">
         <p className="house-bar-label">Casa</p>
-        <div className="house-tabs">
-          {houses.map((h) => (
-            <button
-              key={h.id}
-              className={"house-tab" + (h.id === activeHouse.id ? " active" : "")}
-              onClick={() => setActiveHouseId(h.id)}
-            >
-              {h.name}
-            </button>
-          ))}
-        </div>
+        <HouseTabs
+          houses={houses}
+          activeId={activeHouse.id}
+          setActiveId={setActiveHouseId}
+          onRename={guardedRenameHouse}
+          onAdd={guardedAddHouse}
+          onReorder={reorderHouses}
+        />
       </div>
 
       <h2 className="house-heading">{activeHouse.name}</h2>
 
-      {view === "detalle" ? (
-        <DetalleView categories={activeHouse.categories} entries={activeHouse.entries} />
+      {view === "cargar" ? (
+        <CargarView
+          categories={activeHouse.categories}
+          entries={activeHouse.entries}
+          guardedAddEntry={guardedAddEntry}
+          guardedUpdateEntry={guardedUpdateEntry}
+          guardedDeleteEntry={guardedDeleteEntry}
+          guardedDeleteCategory={guardedDeleteCategory}
+          guardedAddCategory={guardedAddCategory}
+          showAddCategory={showAddCategory}
+          setShowAddCategory={setShowAddCategory}
+          onReorderCategories={reorderCategories}
+        />
       ) : (
         <DashboardView categories={activeHouse.categories} entries={activeHouse.entries} />
       )}
 
-      {updatedAt && (
-        <p className="footer-note">Actualizado al {new Date(updatedAt).toLocaleDateString("es-AR", { year: "numeric", month: "long", day: "numeric" })}</p>
+      <footer className="app-footer">
+        Creado por Dj Pipa con Claude. La IA nos va a dejar sin trabajo a todos en los próximos años.
+      </footer>
+
+      {pinRequest && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h3>Código requerido</h3>
+            <p className="modal-desc">Para editar o agregar datos, ingresá el código.</p>
+            <input
+              className="pin-input"
+              type="password"
+              inputMode="numeric"
+              maxLength={8}
+              value={pinRequest.value}
+              onChange={(e) => setPinRequest((p) => ({ ...p, value: e.target.value, error: null }))}
+              onKeyDown={(e) => { if (e.key === "Enter") submitPin(); }}
+              autoFocus
+            />
+            {pinRequest.error && <p className="pin-error">{pinRequest.error}</p>}
+            <div className="modal-actions">
+              <button className="cancel-btn" onClick={cancelPin}>Cancelar</button>
+              <button className="save-btn" onClick={submitPin}>Ingresar</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {confirmRequest && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h3>{confirmRequest.title}</h3>
+            {confirmRequest.oldLabel && <div className="modal-row old">Antes: {confirmRequest.oldLabel}</div>}
+            <div className="modal-row new">{confirmRequest.oldLabel ? "Después: " : "Nuevo: "}{confirmRequest.newLabel}</div>
+            <p className="modal-desc" style={{ marginTop: 12 }}>¿Confirmás este cambio?</p>
+            <div className="modal-actions">
+              <button className="cancel-btn" onClick={confirmNo}>Cancelar</button>
+              <button className="save-btn" onClick={confirmYes}>Aceptar</button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
 }
 
-function DetalleView({ categories, entries }) {
+function HouseTabs({ houses, activeId, setActiveId, onRename, onAdd, onReorder }) {
+  const [editingHouse, setEditingHouse] = useState(null);
+  const [editValue, setEditValue] = useState("");
+  const [adding, setAdding] = useState(false);
+  const [newName, setNewName] = useState("");
+  const [overIndex, setOverIndex] = useState(null);
+  const dragFrom = useRef(null);
+
+  function startEdit(house) {
+    setEditingHouse(house);
+    setEditValue(house.name);
+  }
+  function commitEdit() {
+    if (editValue.trim() && editingHouse && editValue.trim() !== editingHouse.name) {
+      onRename(editingHouse, editValue.trim());
+    }
+    setEditingHouse(null);
+  }
+  function submitAdd(e) {
+    e.preventDefault();
+    if (!newName.trim()) { setAdding(false); return; }
+    onAdd(newName.trim());
+    setNewName("");
+    setAdding(false);
+  }
+
   return (
-    <main>
+    <div className="house-tabs">
+      {houses.map((h, index) => (
+        editingHouse && editingHouse.id === h.id ? (
+          <input
+            key={h.id}
+            className="house-tab-input"
+            value={editValue}
+            autoFocus
+            onChange={(e) => setEditValue(e.target.value)}
+            onBlur={commitEdit}
+            onKeyDown={(e) => { if (e.key === "Enter") commitEdit(); if (e.key === "Escape") setEditingHouse(null); }}
+          />
+        ) : (
+          <button
+            key={h.id}
+            className={"house-tab" + (h.id === activeId ? " active" : "") + (overIndex === index ? " drag-over" : "")}
+            draggable
+            onDragStart={() => { dragFrom.current = index; }}
+            onDragOver={(e) => { e.preventDefault(); }}
+            onDragEnter={() => setOverIndex(index)}
+            onDragLeave={() => setOverIndex((v) => (v === index ? null : v))}
+            onDrop={(e) => {
+              e.preventDefault();
+              setOverIndex(null);
+              if (dragFrom.current !== null && dragFrom.current !== index) onReorder(dragFrom.current, index);
+              dragFrom.current = null;
+            }}
+            onClick={() => setActiveId(h.id)}
+            onDoubleClick={() => startEdit(h)}
+            title="Arrastrá para reordenar · doble clic para renombrar"
+          >
+            {h.name}
+          </button>
+        )
+      ))}
+      {adding ? (
+        <form className="house-tab-add-form" onSubmit={submitAdd}>
+          <input
+            autoFocus
+            placeholder="Nombre de la casa"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            onBlur={() => { if (!newName.trim()) setAdding(false); }}
+          />
+        </form>
+      ) : (
+        <button className="house-tab add" onClick={() => setAdding(true)}>+ Casa</button>
+      )}
+    </div>
+  );
+}
+
+function CargarView({ categories, entries, guardedAddEntry, guardedUpdateEntry, guardedDeleteEntry, guardedDeleteCategory, guardedAddCategory, showAddCategory, setShowAddCategory, onReorderCategories }) {
+  const dragFrom = useRef(null);
+  const [overIndex, setOverIndex] = useState(null);
+
+  return (
+    <main className="cargar">
       <div className="cards-grid">
-        {categories.map((cat) => (
-          <CategoryCard key={cat.id} category={cat} entries={entries.filter((e) => e.categoryId === cat.id)} />
-        ))}
+        {categories.map((cat, index) => {
+          const catEntries = entries.filter((e) => e.categoryId === cat.id);
+          return (
+            <CategoryCard
+              key={cat.id}
+              category={cat}
+              entries={catEntries}
+              onAdd={(entry) => guardedAddEntry(cat.name, cat.id, entry)}
+              onUpdate={(entry, newAmount) => guardedUpdateEntry(cat.name, entry, newAmount)}
+              onDelete={(entry) => guardedDeleteEntry(cat.name, entry)}
+              onDeleteCategory={() => guardedDeleteCategory(cat, catEntries.length)}
+              isDragOver={overIndex === index}
+              onDragStart={() => { dragFrom.current = index; }}
+              onDragOver={() => setOverIndex(index)}
+              onDragLeave={() => setOverIndex((v) => (v === index ? null : v))}
+              onDrop={() => {
+                setOverIndex(null);
+                if (dragFrom.current !== null && dragFrom.current !== index) onReorderCategories(dragFrom.current, index);
+                dragFrom.current = null;
+              }}
+            />
+          );
+        })}
+        <AddCategoryCard show={showAddCategory} setShow={setShowAddCategory} onAdd={guardedAddCategory} usedColors={categories.map((c) => c.color)} />
       </div>
     </main>
   );
 }
 
-function CategoryCard({ category, entries }) {
-  const sorted = [...entries].sort((a, b) => a.year - b.year || a.month - b.month);
+function CategoryCard({ category, entries, onAdd, onUpdate, onDelete, onDeleteCategory, isDragOver, onDragStart, onDragOver, onDragLeave, onDrop }) {
+  const rows = useMemo(() => buildLedgerRows(entries, category.id), [entries, category.id]);
+  const [month, setMonth] = useState(new Date().getMonth());
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [amount, setAmount] = useState("");
+  const [editing, setEditing] = useState(null); // { entry, isPlaceholder }
+  const [editAmount, setEditAmount] = useState("");
+
+  function submit(e) {
+    e.preventDefault();
+    const val = parseFloat(amount);
+    if (isNaN(val) || val < 0) return;
+    onAdd({ month: Number(month), year: Number(year), amount: val });
+    setAmount("");
+  }
+  function startEdit(entry) {
+    setEditing({ entry, isPlaceholder: !!entry.__placeholder });
+    setEditAmount(entry.amount != null ? String(entry.amount) : "");
+  }
+  function saveEdit() {
+    const val = parseFloat(editAmount);
+    if (isNaN(val) || val < 0) return;
+    if (editing.isPlaceholder) {
+      onAdd({ month: editing.entry.month, year: editing.entry.year, amount: val });
+    } else {
+      onUpdate(editing.entry, val);
+    }
+    setEditing(null);
+  }
+
+  let lastAmount = null;
+
   return (
-    <section className="card" style={{ "--cat-color": category.color }}>
+    <section
+      className={"card" + (isDragOver ? " drag-over" : "")}
+      style={{ "--cat-color": category.color }}
+      onDragOver={(e) => { e.preventDefault(); onDragOver(); }}
+      onDragLeave={onDragLeave}
+      onDrop={(e) => { e.preventDefault(); onDrop(); }}
+    >
       <div className="card-scallop" />
       <div className="card-head">
         <div className="card-title">
           <span className="cat-icon">{category.icon}</span>
           <h2>{category.name}</h2>
         </div>
+        <div className="card-head-actions">
+          <span className="drag-handle" draggable onDragStart={onDragStart} title="Arrastrar para reordenar">⠿</span>
+          {category.id.length > 6 && (
+            <button className="icon-btn" onClick={onDeleteCategory} title="Eliminar categoría">🗑</button>
+          )}
+        </div>
       </div>
+
       <div className="ledger">
-        {sorted.length === 0 && <p className="empty-row">Sin registros</p>}
-        {sorted.map((entry, i) => {
-          const prev = sorted[i - 1];
-          const delta = prev ? ((entry.amount - prev.amount) / prev.amount) * 100 : null;
+        {rows.length === 0 && <p className="empty-row">Sin registros todavía</p>}
+        {rows.map((entry) => {
+          let delta = null;
+          if (!entry.__placeholder) {
+            if (lastAmount !== null) delta = ((entry.amount - lastAmount) / lastAmount) * 100;
+            lastAmount = entry.amount;
+          }
+          const isEditingThis = editing && editing.entry.id === entry.id;
           return (
-            <div className="ledger-row" key={entry.id}>
+            <div className={"ledger-row" + (entry.__placeholder ? " placeholder" : "")} key={entry.id}>
               <span className="ledger-date">{MONTHS[entry.month]} {String(entry.year).slice(2)}</span>
               <span className="ledger-dots" />
-              <span className="ledger-amount">{formatARS(entry.amount)}</span>
-              {delta !== null && (
-                <span className={"delta " + (delta >= 0 ? "up" : "down")}>
-                  {delta >= 0 ? "▲" : "▼"} {Math.abs(delta).toFixed(0)}%
-                </span>
+              {isEditingThis ? (
+                <>
+                  <input className="edit-input" type="number" value={editAmount} onChange={(e) => setEditAmount(e.target.value)} autoFocus />
+                  <button className="icon-btn" onClick={saveEdit}>✓</button>
+                  <button className="icon-btn" onClick={() => setEditing(null)}>✕</button>
+                </>
+              ) : entry.__placeholder ? (
+                <>
+                  <span className="ledger-amount-empty">Sin cargar</span>
+                  <button className="icon-btn" onClick={() => startEdit(entry)} title="Cargar monto">+</button>
+                </>
+              ) : (
+                <>
+                  <span className="ledger-amount">{formatARS(entry.amount)}</span>
+                  {delta !== null && (
+                    <span className={"delta " + (delta >= 0 ? "up" : "down")}>
+                      {delta >= 0 ? "▲" : "▼"} {Math.abs(delta).toFixed(0)}%
+                    </span>
+                  )}
+                  <button className="icon-btn" onClick={() => startEdit(entry)}>✏️</button>
+                  <button className="icon-btn" onClick={() => onDelete(entry)}>🗑</button>
+                </>
               )}
             </div>
           );
         })}
       </div>
+
+      <form className="add-row" onSubmit={submit}>
+        <select value={month} onChange={(e) => setMonth(e.target.value)}>
+          {MONTHS_FULL.map((m, i) => <option value={i} key={i}>{m}</option>)}
+        </select>
+        <input type="number" className="year-input" value={year} onChange={(e) => setYear(e.target.value)} />
+        <input type="number" className="amount-input" placeholder="Monto" value={amount} onChange={(e) => setAmount(e.target.value)} min="0" step="0.01" />
+        <button type="submit" className="add-btn" style={{ background: category.color }}>+</button>
+      </form>
     </section>
+  );
+}
+
+function AddCategoryCard({ show, setShow, onAdd, usedColors }) {
+  const [name, setName] = useState("");
+  const availableColor = PALETTE.find((c) => !usedColors.includes(c)) || PALETTE[0];
+  const [color, setColor] = useState(availableColor);
+
+  function submit(e) {
+    e.preventDefault();
+    if (!name.trim()) return;
+    onAdd(name.trim(), color);
+    setName("");
+    setShow(false);
+  }
+
+  if (!show) {
+    return (
+      <button className="add-category-card" onClick={() => setShow(true)}>
+        <span style={{ fontSize: 22 }}>+</span>
+        <span>Agregar ítem</span>
+      </button>
+    );
+  }
+
+  return (
+    <form className="add-category-card form" onSubmit={submit}>
+      <input autoFocus placeholder="Nombre (ej: Internet, Expensas)" value={name} onChange={(e) => setName(e.target.value)} />
+      <div className="swatches">
+        {PALETTE.map((c) => (
+          <button type="button" key={c} className={"swatch" + (c === color ? " selected" : "")} style={{ background: c }} onClick={() => setColor(c)} />
+        ))}
+      </div>
+      <div className="form-actions">
+        <button type="submit" className="save-btn">Crear</button>
+        <button type="button" className="cancel-btn" onClick={() => setShow(false)}>Cancelar</button>
+      </div>
+    </form>
   );
 }
 
@@ -281,6 +844,7 @@ function DashboardView({ categories, entries }) {
       <main className="dashboard empty-state">
         <span className="big-icon">🧾</span>
         <h2>Todavía no hay nada para mostrar</h2>
+        <p>Cargá algunas facturas en la pestaña "Cargar" y el dashboard se arma solo.</p>
       </main>
     );
   }
