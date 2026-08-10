@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Libro de Cuentas — Vista</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+<script src="https://unpkg.com/recharts@2/umd/Recharts.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+  :root {
+    --paper: #EFF1E4;
+    --paper-line: #D9DCC7;
+    --card-bg: #FBFAF3;
+    --ink: #232B24;
+    --ink-soft: #5C6657;
+    --up: #B23A3A;
+    --down: #3F8F5F;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', sans-serif; color: var(--ink); background: var(--paper); }
+  .app { min-height: 100vh; padding: 24px; max-width: 1100px; margin: 0 auto; }
+
+  .header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom: 20px; }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand-mark { font-family:'Fraunces', serif; font-size:28px; font-weight:600; width:44px; height:44px; display:flex; align-items:center; justify-content:center; background: var(--ink); color: var(--paper); border-radius: 10px; }
+  .brand h1 { font-family:'Fraunces', serif; font-size:24px; font-weight:600; margin:0; letter-spacing:-0.01em; }
+  .brand-sub { margin:2px 0 0; font-size:13px; color: var(--ink-soft); }
+  .badge { font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); border:1px solid var(--paper-line); background: var(--card-bg); padding:4px 10px; border-radius:999px; }
+
+  .tabs { display:flex; background: var(--card-bg); border:1px solid var(--paper-line); border-radius: 10px; padding:4px; }
+  .tab { border:none; background:transparent; padding:8px 18px; font-family:'Inter'; font-size:14px; font-weight:500; color: var(--ink-soft); border-radius:7px; cursor:pointer; }
+  .tab.active { background: var(--ink); color: var(--paper); }
+
+  .house-bar { margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px dashed var(--paper-line); }
+  .house-bar-label { font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color: var(--ink-soft); margin: 0 0 8px 2px; }
+  .house-tabs { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .house-tab { font-family:'Fraunces', serif; font-size:14px; font-weight:600; padding:8px 16px; border-radius:9px; border:1px solid var(--paper-line); background: var(--card-bg); color: var(--ink-soft); cursor:pointer; }
+  .house-tab.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .house-heading { font-family:'Fraunces', serif; font-size:19px; font-weight:600; margin: 0 0 16px 2px; }
+
+  .cards-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:20px; }
+
+  .card { position:relative; background: var(--card-bg); border:1px solid var(--paper-line); border-radius: 14px; padding: 22px 18px 16px; overflow:hidden; }
+  .card-scallop { position:absolute; top:-8px; left:0; right:0; height:16px; background-image: radial-gradient(circle at 8px 8px, transparent 7px, var(--paper) 7.5px); background-size: 16px 16px; background-repeat: repeat-x; }
+  .card-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .card-title { display:flex; align-items:center; gap:8px; }
+  .card-title .cat-icon { font-size:16px; }
+  .card-title h2 { font-family:'Fraunces', serif; font-size:17px; font-weight:600; margin:0; color: var(--ink); }
+
+  .ledger { display:flex; flex-direction:column; gap:8px; }
+  .empty-row { font-size:13px; color: var(--ink-soft); font-style:italic; margin:6px 0; }
+  .ledger-row { display:flex; align-items:center; gap:8px; font-family:'Space Mono', monospace; font-size:13px; }
+  .ledger-date { color: var(--ink-soft); white-space:nowrap; }
+  .ledger-dots { flex:1; border-bottom: 1px dotted var(--paper-line); margin-bottom:4px; }
+  .ledger-amount { font-weight:700; white-space:nowrap; }
+  .delta { display:flex; align-items:center; gap:2px; font-size:11px; font-family:'Inter'; padding:2px 6px; border-radius:6px; white-space:nowrap; }
+  .delta.up { color: var(--up); background: rgba(178,58,58,0.1); }
+  .delta.down { color: var(--down); background: rgba(63,143,95,0.1); }
+
+  .dashboard { display:flex; flex-direction:column; gap:20px; }
+  .dashboard.empty-state, .load-state { align-items:center; justify-content:center; text-align:center; padding:80px 20px; color: var(--ink-soft); gap:10px; display:flex; flex-direction:column; }
+  .dashboard.empty-state h2, .load-state h2 { font-family:'Fraunces', serif; color:var(--ink); margin:8px 0 0; }
+  .big-icon { font-size:40px; }
+
+  .summary-row { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap:14px; }
+  .summary-card { background: var(--card-bg); border:1px solid var(--paper-line); border-left: 4px solid var(--cat-color); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:4px; }
+  .summary-name { font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color: var(--ink-soft); }
+  .summary-amount { font-family:'Space Mono', monospace; font-size:22px; font-weight:700; }
+
+  .chart-panel { background: var(--card-bg); border:1px solid var(--paper-line); border-radius:14px; padding:18px 12px; }
+  .chart-panel h3 { font-family:'Fraunces', serif; font-size:16px; font-weight:600; margin:0 0 12px 12px; }
+
+  .footer-note { text-align:center; font-size:12px; color: var(--ink-soft); margin-top: 28px; }
+
+  @media (max-width: 520px) {
+    .header { flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useMemo } = React;
+const {
+  LineChart, Line, BarChart, Bar, XAxis, YAxis,
+  CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+} = Recharts;
+
+const MONTHS = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+
+function formatARS(n) {
+  return new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(n);
+}
+
+function App() {
+  const [houses, setHouses] = useState(null);
+  const [activeHouseId, setActiveHouseId] = useState(null);
+  const [view, setView] = useState("detalle");
+  const [error, setError] = useState(false);
+  const [updatedAt, setUpdatedAt] = useState(null);
+
+  useEffect(() => {
+    fetch("data.json", { cache: "no-store" })
+      .then((r) => { if (!r.ok) throw new Error("no data"); return r.json(); })
+      .then((data) => {
+        setHouses(data.houses || []);
+        setActiveHouseId(data.activeHouseId || (data.houses && data.houses[0] && data.houses[0].id));
+        setUpdatedAt(data.exportedAt || null);
+      })
+      .catch(() => setError(true));
+  }, []);
+
+  if (error) {
+    return (
+      <div className="app">
+        <div className="load-state">
+          <span className="big-icon">🧾</span>
+          <h2>No se pudo cargar la información</h2>
+          <p>Revisá que el archivo data.json esté publicado junto a esta página.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!houses) {
+    return (
+      <div className="app">
+        <div className="load-state">
+          <span className="big-icon">🧾</span>
+          <h2>Cargando…</h2>
+        </div>
+      </div>
+    );
+  }
+
+  const activeHouse = houses.find((h) => h.id === activeHouseId) || houses[0];
+  if (!activeHouse) {
+    return (
+      <div className="app">
+        <div className="load-state">
+          <span className="big-icon">🧾</span>
+          <h2>Todavía no hay casas cargadas</h2>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="app">
+      <header className="header">
+        <div className="brand">
+          <span className="brand-mark">$</span>
+          <div>
+            <h1>Libro de Cuentas</h1>
+            <p className="brand-sub">Luz, agua, gas y demás — por casa</p>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+          <span className="badge">Solo lectura</span>
+          <nav className="tabs">
+            <button className={view === "detalle" ? "tab active" : "tab"} onClick={() => setView("detalle")}>Detalle</button>
+            <button className={view === "dashboard" ? "tab active" : "tab"} onClick={() => setView("dashboard")}>Dashboard</button>
+          </nav>
+        </div>
+      </header>
+
+      <div className="house-bar">
+        <p className="house-bar-label">Casa</p>
+        <div className="house-tabs">
+          {houses.map((h) => (
+            <button
+              key={h.id}
+              className={"house-tab" + (h.id === activeHouse.id ? " active" : "")}
+              onClick={() => setActiveHouseId(h.id)}
+            >
+              {h.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <h2 className="house-heading">{activeHouse.name}</h2>
+
+      {view === "detalle" ? (
+        <DetalleView categories={activeHouse.categories} entries={activeHouse.entries} />
+      ) : (
+        <DashboardView categories={activeHouse.categories} entries={activeHouse.entries} />
+      )}
+
+      {updatedAt && (
+        <p className="footer-note">Última actualización: {new Date(updatedAt).toLocaleDateString("es-AR", { year: "numeric", month: "long", day: "numeric" })}</p>
+      )}
+    </div>
+  );
+}
+
+function DetalleView({ categories, entries }) {
+  return (
+    <main>
+      <div className="cards-grid">
+        {categories.map((cat) => (
+          <CategoryCard key={cat.id} category={cat} entries={entries.filter((e) => e.categoryId === cat.id)} />
+        ))}
+      </div>
+    </main>
+  );
+}
+
+function CategoryCard({ category, entries }) {
+  const sorted = [...entries].sort((a, b) => a.year - b.year || a.month - b.month);
+  return (
+    <section className="card" style={{ "--cat-color": category.color }}>
+      <div className="card-scallop" />
+      <div className="card-head">
+        <div className="card-title">
+          <span className="cat-icon">{category.icon}</span>
+          <h2>{category.name}</h2>
+        </div>
+      </div>
+      <div className="ledger">
+        {sorted.length === 0 && <p className="empty-row">Sin registros</p>}
+        {sorted.map((entry, i) => {
+          const prev = sorted[i - 1];
+          const delta = prev ? ((entry.amount - prev.amount) / prev.amount) * 100 : null;
+          return (
+            <div className="ledger-row" key={entry.id}>
+              <span className="ledger-date">{MONTHS[entry.month]} {String(entry.year).slice(2)}</span>
+              <span className="ledger-dots" />
+              <span className="ledger-amount">{formatARS(entry.amount)}</span>
+              {delta !== null && (
+                <span className={"delta " + (delta >= 0 ? "up" : "down")}>
+                  {delta >= 0 ? "▲" : "▼"} {Math.abs(delta).toFixed(0)}%
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function DashboardView({ categories, entries }) {
+  const timeline = useMemo(() => {
+    const keys = new Set(entries.map((e) => `${e.year}-${String(e.month).padStart(2, "0")}`));
+    const sortedKeys = [...keys].sort();
+    return sortedKeys.map((key) => {
+      const [y, m] = key.split("-").map(Number);
+      const row = { key, label: `${MONTHS[m]} ${String(y).slice(2)}` };
+      let total = 0;
+      categories.forEach((cat) => {
+        const found = entries.find((e) => e.categoryId === cat.id && e.year === y && e.month === m);
+        if (found) { row[cat.name] = found.amount; total += found.amount; }
+      });
+      row.__total = total;
+      return row;
+    });
+  }, [categories, entries]);
+
+  const summary = useMemo(() => {
+    return categories.map((cat) => {
+      const catEntries = entries.filter((e) => e.categoryId === cat.id).sort((a, b) => a.year - b.year || a.month - b.month);
+      const last = catEntries[catEntries.length - 1];
+      const prev = catEntries[catEntries.length - 2];
+      const delta = last && prev ? ((last.amount - prev.amount) / prev.amount) * 100 : null;
+      return { cat, last, delta };
+    });
+  }, [categories, entries]);
+
+  if (entries.length === 0) {
+    return (
+      <main className="dashboard empty-state">
+        <span className="big-icon">🧾</span>
+        <h2>Todavía no hay nada para mostrar</h2>
+      </main>
+    );
+  }
+
+  return (
+    <main className="dashboard">
+      <div className="summary-row">
+        {summary.map(({ cat, last, delta }) => (
+          <div className="summary-card" key={cat.id} style={{ "--cat-color": cat.color }}>
+            <span className="summary-name">{cat.name}</span>
+            <span className="summary-amount">{last ? formatARS(last.amount) : "—"}</span>
+            {delta !== null && (
+              <span className={"delta " + (delta >= 0 ? "up" : "down")}>
+                {delta >= 0 ? "▲" : "▼"} {Math.abs(delta).toFixed(0)}% vs. mes anterior
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="chart-panel">
+        <h3>Evolución mensual</h3>
+        <ResponsiveContainer width="100%" height={280}>
+          <LineChart data={timeline}>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--paper-line)" />
+            <XAxis dataKey="label" stroke="var(--ink-soft)" fontSize={12} />
+            <YAxis stroke="var(--ink-soft)" fontSize={12} tickFormatter={(v) => `$${v}`} />
+            <Tooltip formatter={(v) => formatARS(v)} contentStyle={{ background: "var(--card-bg)", border: "1px solid var(--paper-line)", borderRadius: 8, fontFamily: "Inter, sans-serif" }} />
+            <Legend />
+            {categories.map((cat) => (
+              <Line key={cat.id} type="monotone" dataKey={cat.name} stroke={cat.color} strokeWidth={2.5} dot={{ r: 3 }} connectNulls />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="chart-panel">
+        <h3>Total mensual (todos los ítems)</h3>
+        <ResponsiveContainer width="100%" height={240}>
+          <BarChart data={timeline}>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--paper-line)" />
+            <XAxis dataKey="label" stroke="var(--ink-soft)" fontSize={12} />
+            <YAxis stroke="var(--ink-soft)" fontSize={12} tickFormatter={(v) => `$${v}`} />
+            <Tooltip formatter={(v) => formatARS(v)} contentStyle={{ background: "var(--card-bg)", border: "1px solid var(--paper-line)", borderRadius: 8, fontFamily: "Inter, sans-serif" }} />
+            <Bar dataKey="__total" name="Total" fill="var(--ink)" radius={[4, 4, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </main>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

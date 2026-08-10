@@ -1,0 +1,709 @@
+{
+  "houses": [
+    {
+      "id": "1g9vhd91",
+      "name": "Pedernera",
+      "categories": [
+        {
+          "id": "luz",
+          "name": "Luz",
+          "color": "#E3A73A",
+          "icon": "⚡"
+        },
+        {
+          "id": "agua",
+          "name": "Agua",
+          "color": "#3E7CA6",
+          "icon": "💧"
+        },
+        {
+          "id": "gas",
+          "name": "Gas",
+          "color": "#B54A2E",
+          "icon": "🔥"
+        },
+        {
+          "id": "cat-internet",
+          "name": "Internet",
+          "color": "#7A5C8E",
+          "icon": "🌐"
+        },
+        {
+          "id": "cat-celular",
+          "name": "Celular",
+          "color": "#2F8B7D",
+          "icon": "📱"
+        },
+        {
+          "id": "cat-lanus",
+          "name": "Lanus",
+          "color": "#8A6E4B",
+          "icon": "🏛️"
+        },
+        {
+          "id": "cat-seguroauto",
+          "name": "Seguro Auto",
+          "color": "#4B6E8A",
+          "icon": "🚗"
+        },
+        {
+          "id": "cat-arba",
+          "name": "Arba",
+          "color": "#8E5C6E",
+          "icon": "📋"
+        },
+        {
+          "id": "cat-patente",
+          "name": "Patente",
+          "color": "#6E8A4B",
+          "icon": "🚙"
+        },
+        {
+          "id": "cat-directv",
+          "name": "DirecTV",
+          "color": "#9C6B3E",
+          "icon": "📺"
+        }
+      ],
+      "entries": [
+        {
+          "id": "ped001",
+          "categoryId": "luz",
+          "month": 10,
+          "year": 2025,
+          "amount": 14871.1
+        },
+        {
+          "id": "ped002",
+          "categoryId": "luz",
+          "month": 11,
+          "year": 2025,
+          "amount": 9781.15
+        },
+        {
+          "id": "ped003",
+          "categoryId": "luz",
+          "month": 0,
+          "year": 2026,
+          "amount": 15510.27
+        },
+        {
+          "id": "ped004",
+          "categoryId": "luz",
+          "month": 1,
+          "year": 2026,
+          "amount": 20145.66
+        },
+        {
+          "id": "ped005",
+          "categoryId": "luz",
+          "month": 2,
+          "year": 2026,
+          "amount": 20518.14
+        },
+        {
+          "id": "ped006",
+          "categoryId": "luz",
+          "month": 3,
+          "year": 2026,
+          "amount": 19125.47
+        },
+        {
+          "id": "ped007",
+          "categoryId": "luz",
+          "month": 4,
+          "year": 2026,
+          "amount": 22913.7
+        },
+        {
+          "id": "ped008",
+          "categoryId": "luz",
+          "month": 5,
+          "year": 2026,
+          "amount": 68852.28
+        },
+        {
+          "id": "ped009",
+          "categoryId": "luz",
+          "month": 6,
+          "year": 2026,
+          "amount": 151064.27
+        },
+        {
+          "id": "ped010",
+          "categoryId": "luz",
+          "month": 7,
+          "year": 2026,
+          "amount": 115214.56
+        },
+        {
+          "id": "ped011",
+          "categoryId": "agua",
+          "month": 10,
+          "year": 2025,
+          "amount": 16356.42
+        },
+        {
+          "id": "ped012",
+          "categoryId": "agua",
+          "month": 11,
+          "year": 2025,
+          "amount": 16514.53
+        },
+        {
+          "id": "ped013",
+          "categoryId": "agua",
+          "month": 0,
+          "year": 2026,
+          "amount": 16674.13
+        },
+        {
+          "id": "ped014",
+          "categoryId": "agua",
+          "month": 1,
+          "year": 2026,
+          "amount": 17101.01
+        },
+        {
+          "id": "ped015",
+          "categoryId": "agua",
+          "month": 2,
+          "year": 2026,
+          "amount": 17785.05
+        },
+        {
+          "id": "ped016",
+          "categoryId": "agua",
+          "month": 3,
+          "year": 2026,
+          "amount": 20094.72
+        },
+        {
+          "id": "ped017",
+          "categoryId": "agua",
+          "month": 4,
+          "year": 2026,
+          "amount": 20759.2
+        },
+        {
+          "id": "ped018",
+          "categoryId": "agua",
+          "month": 5,
+          "year": 2026,
+          "amount": 20873.84
+        },
+        {
+          "id": "ped019",
+          "categoryId": "agua",
+          "month": 6,
+          "year": 2026,
+          "amount": 21566.55
+        },
+        {
+          "id": "ped020",
+          "categoryId": "agua",
+          "month": 7,
+          "year": 2026,
+          "amount": 21152.22
+        },
+        {
+          "id": "ped021",
+          "categoryId": "gas",
+          "month": 10,
+          "year": 2025,
+          "amount": 4896.59
+        },
+        {
+          "id": "ped022",
+          "categoryId": "gas",
+          "month": 11,
+          "year": 2025,
+          "amount": 4884.07
+        },
+        {
+          "id": "ped023",
+          "categoryId": "gas",
+          "month": 0,
+          "year": 2026,
+          "amount": 5087.57
+        },
+        {
+          "id": "ped024",
+          "categoryId": "gas",
+          "month": 1,
+          "year": 2026,
+          "amount": 5453.05
+        },
+        {
+          "id": "ped025",
+          "categoryId": "gas",
+          "month": 2,
+          "year": 2026,
+          "amount": 5393.09
+        },
+        {
+          "id": "ped026",
+          "categoryId": "gas",
+          "month": 3,
+          "year": 2026,
+          "amount": 6180.13
+        },
+        {
+          "id": "ped027",
+          "categoryId": "gas",
+          "month": 5,
+          "year": 2026,
+          "amount": 11998.29
+        },
+        {
+          "id": "ped028",
+          "categoryId": "gas",
+          "month": 6,
+          "year": 2026,
+          "amount": 12345.82
+        },
+        {
+          "id": "ped029",
+          "categoryId": "gas",
+          "month": 7,
+          "year": 2026,
+          "amount": 43424.46
+        },
+        {
+          "id": "ped030",
+          "categoryId": "cat-internet",
+          "month": 11,
+          "year": 2025,
+          "amount": 21967.73
+        },
+        {
+          "id": "ped031",
+          "categoryId": "cat-internet",
+          "month": 0,
+          "year": 2026,
+          "amount": 22699.99
+        },
+        {
+          "id": "ped032",
+          "categoryId": "cat-internet",
+          "month": 1,
+          "year": 2026,
+          "amount": 23649.98
+        },
+        {
+          "id": "ped033",
+          "categoryId": "cat-internet",
+          "month": 2,
+          "year": 2026,
+          "amount": 25399.99
+        },
+        {
+          "id": "ped034",
+          "categoryId": "cat-internet",
+          "month": 3,
+          "year": 2026,
+          "amount": 27149.99
+        },
+        {
+          "id": "ped035",
+          "categoryId": "cat-internet",
+          "month": 4,
+          "year": 2026,
+          "amount": 31877.99
+        },
+        {
+          "id": "ped036",
+          "categoryId": "cat-internet",
+          "month": 5,
+          "year": 2026,
+          "amount": 33100.0
+        },
+        {
+          "id": "ped037",
+          "categoryId": "cat-internet",
+          "month": 6,
+          "year": 2026,
+          "amount": 34246.99
+        },
+        {
+          "id": "ped038",
+          "categoryId": "cat-internet",
+          "month": 7,
+          "year": 2026,
+          "amount": 34210.49
+        },
+        {
+          "id": "ped039",
+          "categoryId": "cat-celular",
+          "month": 10,
+          "year": 2025,
+          "amount": 30899.96
+        },
+        {
+          "id": "ped040",
+          "categoryId": "cat-celular",
+          "month": 11,
+          "year": 2025,
+          "amount": 31649.96
+        },
+        {
+          "id": "ped041",
+          "categoryId": "cat-celular",
+          "month": 0,
+          "year": 2026,
+          "amount": 32750.01
+        },
+        {
+          "id": "ped042",
+          "categoryId": "cat-celular",
+          "month": 1,
+          "year": 2026,
+          "amount": 33700.0
+        },
+        {
+          "id": "ped043",
+          "categoryId": "cat-celular",
+          "month": 2,
+          "year": 2026,
+          "amount": 34750.0
+        },
+        {
+          "id": "ped044",
+          "categoryId": "cat-celular",
+          "month": 3,
+          "year": 2026,
+          "amount": 38704.77
+        },
+        {
+          "id": "ped045",
+          "categoryId": "cat-celular",
+          "month": 4,
+          "year": 2026,
+          "amount": 40053.99
+        },
+        {
+          "id": "ped046",
+          "categoryId": "cat-celular",
+          "month": 5,
+          "year": 2026,
+          "amount": 41412.0
+        },
+        {
+          "id": "ped047",
+          "categoryId": "cat-celular",
+          "month": 6,
+          "year": 2026,
+          "amount": 42279.99
+        },
+        {
+          "id": "ped048",
+          "categoryId": "cat-lanus",
+          "month": 10,
+          "year": 2025,
+          "amount": 6436.0
+        },
+        {
+          "id": "ped049",
+          "categoryId": "cat-lanus",
+          "month": 11,
+          "year": 2025,
+          "amount": 6436.0
+        },
+        {
+          "id": "ped050",
+          "categoryId": "cat-lanus",
+          "month": 0,
+          "year": 2026,
+          "amount": 6682.5
+        },
+        {
+          "id": "ped051",
+          "categoryId": "cat-lanus",
+          "month": 1,
+          "year": 2026,
+          "amount": 6682.5
+        },
+        {
+          "id": "ped052",
+          "categoryId": "cat-lanus",
+          "month": 2,
+          "year": 2026,
+          "amount": 6682.5
+        },
+        {
+          "id": "ped053",
+          "categoryId": "cat-lanus",
+          "month": 3,
+          "year": 2026,
+          "amount": 6682.5
+        },
+        {
+          "id": "ped054",
+          "categoryId": "cat-lanus",
+          "month": 4,
+          "year": 2026,
+          "amount": 6682.5
+        },
+        {
+          "id": "ped055",
+          "categoryId": "cat-lanus",
+          "month": 5,
+          "year": 2026,
+          "amount": 6682.5
+        },
+        {
+          "id": "ped056",
+          "categoryId": "cat-lanus",
+          "month": 6,
+          "year": 2026,
+          "amount": 6682.5
+        },
+        {
+          "id": "ped057",
+          "categoryId": "cat-lanus",
+          "month": 7,
+          "year": 2026,
+          "amount": 6682.5
+        },
+        {
+          "id": "ped058",
+          "categoryId": "cat-seguroauto",
+          "month": 10,
+          "year": 2025,
+          "amount": 155290.45
+        },
+        {
+          "id": "ped059",
+          "categoryId": "cat-seguroauto",
+          "month": 11,
+          "year": 2025,
+          "amount": 161434.02
+        },
+        {
+          "id": "ped060",
+          "categoryId": "cat-seguroauto",
+          "month": 0,
+          "year": 2026,
+          "amount": 168205.47
+        },
+        {
+          "id": "ped061",
+          "categoryId": "cat-seguroauto",
+          "month": 1,
+          "year": 2026,
+          "amount": 157102.16
+        },
+        {
+          "id": "ped062",
+          "categoryId": "cat-seguroauto",
+          "month": 2,
+          "year": 2026,
+          "amount": 176408.69
+        },
+        {
+          "id": "ped063",
+          "categoryId": "cat-seguroauto",
+          "month": 3,
+          "year": 2026,
+          "amount": 172577.87
+        },
+        {
+          "id": "ped064",
+          "categoryId": "cat-seguroauto",
+          "month": 4,
+          "year": 2026,
+          "amount": 173694.85
+        },
+        {
+          "id": "ped065",
+          "categoryId": "cat-seguroauto",
+          "month": 5,
+          "year": 2026,
+          "amount": 173694.85
+        },
+        {
+          "id": "ped066",
+          "categoryId": "cat-seguroauto",
+          "month": 6,
+          "year": 2026,
+          "amount": 175123.76
+        },
+        {
+          "id": "ped067",
+          "categoryId": "cat-seguroauto",
+          "month": 7,
+          "year": 2026,
+          "amount": 184131.0
+        },
+        {
+          "id": "ped068",
+          "categoryId": "cat-arba",
+          "month": 1,
+          "year": 2026,
+          "amount": 5739.2
+        },
+        {
+          "id": "ped069",
+          "categoryId": "cat-arba",
+          "month": 3,
+          "year": 2026,
+          "amount": 6050.6
+        },
+        {
+          "id": "ped070",
+          "categoryId": "cat-arba",
+          "month": 5,
+          "year": 2026,
+          "amount": 6388.3
+        },
+        {
+          "id": "ped071",
+          "categoryId": "cat-arba",
+          "month": 7,
+          "year": 2026,
+          "amount": 6670.5
+        },
+        {
+          "id": "ped072",
+          "categoryId": "cat-patente",
+          "month": 10,
+          "year": 2025,
+          "amount": 148444.1
+        },
+        {
+          "id": "ped073",
+          "categoryId": "cat-patente",
+          "month": 2,
+          "year": 2026,
+          "amount": 43223.3
+        },
+        {
+          "id": "ped074",
+          "categoryId": "cat-patente",
+          "month": 3,
+          "year": 2026,
+          "amount": 44360.6
+        },
+        {
+          "id": "ped075",
+          "categoryId": "cat-patente",
+          "month": 4,
+          "year": 2026,
+          "amount": 45436.4
+        },
+        {
+          "id": "ped076",
+          "categoryId": "cat-patente",
+          "month": 5,
+          "year": 2026,
+          "amount": 45436.4
+        },
+        {
+          "id": "ped077",
+          "categoryId": "cat-patente",
+          "month": 6,
+          "year": 2026,
+          "amount": 47973.8
+        },
+        {
+          "id": "ped078",
+          "categoryId": "cat-patente",
+          "month": 7,
+          "year": 2026,
+          "amount": 48905.9
+        },
+        {
+          "id": "ped079",
+          "categoryId": "cat-directv",
+          "month": 5,
+          "year": 2026,
+          "amount": 28701.68
+        },
+        {
+          "id": "ped080",
+          "categoryId": "cat-directv",
+          "month": 6,
+          "year": 2026,
+          "amount": 41500.0
+        }
+      ]
+    },
+    {
+      "id": "c8wmd1r0",
+      "name": "Condarco",
+      "categories": [
+        {
+          "id": "luz",
+          "name": "Luz",
+          "color": "#E3A73A",
+          "icon": "⚡"
+        },
+        {
+          "id": "agua",
+          "name": "Agua",
+          "color": "#3E7CA6",
+          "icon": "💧"
+        },
+        {
+          "id": "gas",
+          "name": "Gas",
+          "color": "#B54A2E",
+          "icon": "🔥"
+        }
+      ],
+      "entries": []
+    },
+    {
+      "id": "c90r8lf3",
+      "name": "Abuela Seve",
+      "categories": [
+        {
+          "id": "luz",
+          "name": "Luz",
+          "color": "#E3A73A",
+          "icon": "⚡"
+        },
+        {
+          "id": "agua",
+          "name": "Agua",
+          "color": "#3E7CA6",
+          "icon": "💧"
+        },
+        {
+          "id": "gas",
+          "name": "Gas",
+          "color": "#B54A2E",
+          "icon": "🔥"
+        }
+      ],
+      "entries": []
+    },
+    {
+      "id": "8zjuvksm",
+      "name": "Quinta",
+      "categories": [
+        {
+          "id": "luz",
+          "name": "Luz",
+          "color": "#E3A73A",
+          "icon": "⚡"
+        },
+        {
+          "id": "agua",
+          "name": "Agua",
+          "color": "#3E7CA6",
+          "icon": "💧"
+        },
+        {
+          "id": "gas",
+          "name": "Gas",
+          "color": "#B54A2E",
+          "icon": "🔥"
+        }
+      ],
+      "entries": []
+    }
+  ],
+  "activeHouseId": "1g9vhd91",
+  "exportedAt": "2026-08-09T00:00:00.000Z"
+}
